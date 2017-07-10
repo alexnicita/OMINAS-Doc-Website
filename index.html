@@ -20,15 +20,22 @@
 
   <body id='overview page'>
     <h1 id='overview title'>OMINAS Overview</h1>
+
     <h2>Introduction</h2>
     <p>OMINAS is an IDL-based software environment for the reduction and analysis of data taken by any space-based or planet-based system.  It was written by Joseph Spitale (jnspitale@psi.edu).  Other contributors include Vance Haemmerle, Matthew Tiscareno, John Weiss, Daiana DiNino, Paulo Penteado, Jackie Ryan and Mark Moretto.  Funding for its initial development was provided by the Cassini mission.</p>
+
     <h2>Functional Requirements</h2>
     <p>OMINAS development is guided by the following functional requirements:</p>
     <h3>Portability</h3>
+    <p>OMINAS should operate on as many platforms as possible.  This requirement is easily implemented using IDL.  Historically, OMINAS has been used on Alpha/OSF, Sun/Solaris, PC/Linux and Mac/OS X.  At present, it is running on PC/Linux, Mac/OS X, and PC/Windows.</p>
     <h3>Speed</h3>
+    <p>IDL's portability is achieved via the interpretation of a machine-independent pseudocode, which significantly affects its performance.  Therefore, care must be taken to use vectorized operations where necessary to optimize efficiency.  OMINAS programs are often comparable in speed to analogous code written in C, but there is a memory cost due to the use of of large arrays.</p>
     <h3>Modularity</h3>
+    <p>OMINAS obeys object-oriented software concepts, so that it is highly modular and relatively easy to modify. Although IDL directly provides for an object-oriented architecture, that capability is only partially used in OMINAS, for reasons discussed below.</p>
     <h3>Generality</h3>
+    <p>OMINAS itself does not contain any code that is dependent upon the particular instrument that generated the input data, or upon the organization of the file in which the data resides. Because IDL compiles code dynamically, this requirement is met in OMINAS by allowing for external user-written configuration code that contains all of the specifics of a particular data source.</p>
     <h3>Scripting</h3>
+    <p>OMINAS maintain a lowest-level user interface that operates from a command line so that analyses may be constructed as command scripts.  Such a capability is necessary in order for jobs to be performed in batch mode with no user intervention. OMINAS contains a command-level user interface known as `PG <./com/pg/index.html>`, which consists of a number of IDL programs.  Those programs may be combined into IDL batch files and run autonomously. There is also a graphical interface called `GRIM <./gr/index.html>` (Graphical Interface to OMINAS).</p>
 
 
 
