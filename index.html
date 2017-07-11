@@ -729,4 +729,94 @@ The interpretation of the body coordinate axes depends on the superclass of of w
 
  <h1>Object Methods</h1>
  <p>Routines that are allowed to directly access the class descriptor are referred to as its methods. They constitute the interface between the object descriptor and higher level programs. In the object library, all of the methods associated with a given class reside in the same directory. The following paragraphs describe some common types of methods used in the library.</p>
+
+ <h3>Init Methods</h3>
+ <p>Every class contains an init method, which is used to initialize one or more class descriptions. The init method fills in initial values in the class descriptor and calls the init method for the immediate superclass if one exists. Init methods are named &lt;class&gt;_INIT_DECSRIPTORS, where &lt;class&gt; is the object class abbreviation. Init methods are implemented as functions that accept as their only argument an integer specifying the number of descriptors to be created. Alternatively, existing descriptors can be provided through a keyword named for the appropriate class descriptor, in which case the given descriptors are initialized instead rather than creating new ones. The superclass descriptor is provided through a keyword named for that class descriptor. Because each init method calls the init method of its immediate superclass, the arguments to the init method include all quantities that will be needed for this class and all of its superclasses. </p>
+
+ <h3>Access Methods</h3>
+ <p>Most classes contain access methods, which provide access to fields of the class descriptor such that the caller has no knowledge of the internal organization of the class descriptor. The simplest access method would simply set or return the value of one field of the class descriptor. A more sophisticated access method could be used to enforce internal consistency between related fields in a class descriptor. Access methods are standardized as follows: </p>
+
+ <h4>Retrieval-Access Method</h4>
+ <p>Methods for retrieving a quantity from a descriptor are named &lt;class&gt;_&lt;parm&gt;, where &lt;class&gt; is the object class abbreviation, and &lt;parm&gt; is the name of the parameter to be retrieved. Retrieval methods are implemented as functions that accept the relevant descriptor (or list of descriptors) as their first argument and return the value (or values) of the desired quantity. If a class requires additional input information (e.g., the DISK class), then it is given as the second argument.  All access methods accept the NOEVENT keyword, which suppresses the generation of events.</p>
+ <h4>Replacement-Access Method</h4>
+ <p>Methods for replacing a quantity in a descriptor are named &lt;class&gt;_SET_&lt;parm&gt;, where &lt;class&gt; is the object class abbreviation, and &lt;parm&gt; is the name of the parameter to be retrieved. Replacement methods are implemented as procedures that accept the relevant descriptor (or list of descriptors) as their first argument and the value (or values) of the desired quantity as the second argument. If a class requires additional input information (e.g., the DSK class), then it is given as the third argument.  All replacement methods accept the NOEVENT keyword, which suppresses the generation of events.</p>
+ <h4>Derivation-Access Method</h4>
+ <p>Methods that derive a quantity not directly stored in a descriptor are named &lt;class&gt;_GET_&lt;parm&gt;, where &lt;class&gt; is the object class abbreviation, &lt;parm&gt; is the name of the parameter to be retrieved. Derivation methods are implemented as functions that accept the relevant descriptor (or list of descriptors) as their first argument and return the value (or values) of the desired quantity. If a class requires additional input information (e.g., the DSK class), then it is given as the second argument. Note that the naming of some miscellaneous methods conflicts with this convention (see below).  All derivation methods accept the NOEVENT keyword, which suppresses the generation of events.</p>
+
+ <h3>Query/Assign Methods</h3>
+ <p>Each class contains methods for query and assignment of multiple object fields. These methods are named &lt;class&gt;_QUERY and &lt;class&gt;_ASSIGN. Query and assign methods are implemented as procedures that accept the relevant descriptor (or array of descriptors) as their first argument and keywords specifying the names of fields to either retrieve or replace. Besides simplifying code, these methods improve efficiency by dereferencing and re-referencing the given objects only once, rather than once per field, as with the individual retrieval and replacement methods. All query and assign methods accept the NOEVENT keyword, which suppresses the generation of events.</p>
+
+ <h3>Transformation Methods</h3>
+ <p>Many classes are used to describe physical objects that are associated with various coordinate systems. For example, the CAMERA class has a body-fixed cartesian coordinate system, a focal-plane coordinate system, and an image-space coordinate system. Those classes provide routines called transformation methods that perform the transformations between the class-specific coordinate systems, as well as to and from the inertial coordinate system, which is common to all such classes. Transformation methods perform all of the transformations between the "adjacent" coordinate systems, that is, coordinate systems that are related by the simplest transformation. As an example, adjacent coordinate systems for the CAMERA class are illustrated in the following diagram, with '<->' meaning 'adjacent to':</p>
+ <p>Inertial <-> Body <-> Focal <-> Image</p>
+ <p>Transformations between non-adjacent coordinate systems are achieved by composing transformations between two or more adjacent systems.</p>
+ <p>Transformation methods are named &lt;class&gt;_&lt;src&gt;_TO_&lt;dst&gt;, where &lt;class&gt; is the object class abbreviation, &lt;src&gt; is the name of the coordinate system of the input points, and &lt;dst&gt; is the name of the coordinate system of the output points. Transformation methods are implemented as functions that accept the relevant descriptor (or array of descriptors) as their first argument and the input points as their second argument. If additional information is required to describe the reference system (e.g., DISK), then it is supplied as a keyword. Transformation methods return the points represented in the new frame. </p>
+ <p>By convention, the transformation methods operate on arrays of objects with dimensions in an object direction, a timestep direction, and an element direction. The specific ordering of the dimensions is determined by the type of object in question. For 3-space vectors, the dimensions are nv x 3 x nt, where nv stands for "number of vectors" and nt stands for "number of timesteps", which really means number of objects. The element direction is second because these are column vectors and are multiplied in matrix expressions using the "##" operator. </p>
+ <p>Note that in object library code and documentation, vectors and matrices are discussed as they are printed by IDL. Thus, for example, a vector with dimensions 1x3 is referred to as a column vector, and the j-th element of the i-th row of the matrix M (written Mij in matrix notation) is addressed as M[j,i] in the object library.</p>
+ <p>For image points, the dimensions are 2 x nv x nt. The element direction is first because IDL plotting routines expect arrays of points to be arranged in this way.</p>
+ <p>Transformation methods also take an array of nt class descriptors relevant to the particular transformation. Each class descriptor is used for every object in the corresponding timestep.</p>
+
+ <h3>State Methods</h3>
+ <p>Many classes contain methods whose purpose is to change the state of the entire class descriptor in some self-consistent manner. An example would be the time evolution of the descriptor using its time derivatives.</p>
+
+ <h3>Miscellaneous Methods</h3>
+ <p>Some classes contain methods for performing miscellaneous tasks, like tracing a ray at a globe. There is no naming / interface convention for these routines. Some of these routines have names similar to the derivation methods described above.</p>
+
+ <h3>Special CORE Methods</h3>
+ <p>As CORE is at the root of the object tree, it defines some special methods for object management: COR_CLASS_INFO, COR_ISA, COR_REPLICATE, COR_SELECT, COR_TREE.</p>
+ <p>Object library routines use generic access methods, so descriptor inputs are rather forgiving.  For example, any routine requiring a body descriptor will accept any subclass of BODY, so a camera descriptor may be provided directly to BOD_POS instead of first calling CAM_BODY.</p>
+
+ <h1>Working With OMINAS Objects</h1>
+
+ <h3>Object Descriptor Naming Conventions</h3>
+
+ <h3>Object Descriptor Events</h3>
+ <p></p>
+
+ <h3>Cloning, Copying, and Freeing Descriptors</h3>
+ <p></p>
+
+ <h3>Other Sublibraries</h3>
+ <h4>Tools Library</h4>
+ <p></p>
+ <h4>Composite Transformation Routines</h4>
+ <p></p>
+ <h5>Surface Coordinate Systems</h5>
+ <p></p>
+ <p></p>
+ <p></p>
+ <p></p>
+ <p></p>
+
+ <h1>PG Command Interface</h1>
+ <p></p>
+ <h3>Structure of a PG Program</h3>
+ <p></p>
+ <p><pre> </pre></p>
+ <p></p>
+
+ <h4>Descriptor Arguments</h4>
+ <p></p>
+ <p></p>
+ <p></p>
+ <h4>Generic Descriptor</h4>
+ <p></p>
+ <p></p>
+ <p></p>
+ <h4>Display Issues</h4>
+ <p></p>
+ <h4>Manipulating Object Descriptors</h4>
+ <p></p>
+ <p></p>
+ <h4>Error Handling</h4>
+ <p></p>
+
+
+ <h1>Graphical Interface to OMINAS (GRIM)</h1>
+ <p></p>
+
+<h3>Interface to GRIM Data (INGRID)</h3>
+<p></p>
+
+<h1>OMINAS Batch Files</h1>
 </html>
