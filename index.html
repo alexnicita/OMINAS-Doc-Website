@@ -384,5 +384,251 @@ detect_gll_ssi				VICAR
  <p>Detached headers are read and written in OMINAS using the translators DH_STD_INPUT and DH_STD_OUTPUT. These translators read or write geometry descriptor data to or from a detached header. The keywords used in the detached header are derived from the object class names and object structure field names.</p>
 
  <h2>Point Object Class</h2>
- <p></p>
+ <p>The POINT object describes an array of points. A single POINT object contains an array of image points and their corresponding inertial vectors, if applicable. In addition, there is a flag array providing a bit-mask for each point.</p>
+ <p>The points array is (2,nv,nt) and the vectors array is (nv,3,nt), where nv is the number of points or vectors and nt is the number of timesteps. There is a one-to-one correspondence between image points and inertial vectors.</p>
+ <p>The flags array is long (nv,nt), with one flag word for each point. This allows for 32 1-bit flags per point. The flag masks are defined in pgs_include.pro.</p>
+ <p>The data array and tags are determined by the program. Generally, the data array is (nv,nd) or (nv,nt,nd), where nd is the number of different data values per point. The tags array is generally a string array (nd), whose purpose is to allow other programs to find these output values without requiring the user to deal with long argument lists.</p>
+
+
+ <h2>Body Object Class</h2>
+ <p>CORE -> BODY</p>
+ <p>The BODY object class describes the position and orientation of a rigid body in space. It is an immediate subclass of CORE.  Below are explanations of its coordinate systems and data objects.</p>
+ <p><i>Coordinate Systems</i></p>
+ <table>
+   <tr>
+     <th>Inertial</th>
+     <th>Cartesian coordinate system used as the celestial reference frame.</th>
+   </tr>
+   <tr>
+     <th>Body</th>
+     <th>Cartesian coordinate system centered on and fixed to the body.</th>
+   </tr>
+   <tr>
+     <th>Radec</th>
+     <th>Polar coordinate system centered on and fixed to the body. Vectors are given as [ra, dec, r], where ra = right ascension, dec = declination, and r = radial distance.  This is a surface coordinate system.</th>
+   </tr>
+ </table>
+ <p><i>Data Objects</i></p>
+ <table>
+   <tr>
+     <th>Orientation Matrix</th>
+     <th>
+       <pre>The orientation matrix transforms vectors given in the body coordinate system to vectors given in the inertial coordinate system
+(using the IDL ## matrix operator). Its form is:
+
+            b0x b1x b2x
+            b0y b1y b2y
+            b0z b1z b2z,
+
+where the body axis vectors are b0=[b0x,b0y,b0z], b1=[b1x,b1y,b1z], and b2=[b2x,b2y,b2z],
+with components given with respect to the inertial system.
+
+              b2
+              |
+              | / b1
+              | /
+              |/
+              ------- b0
+
+The interpretation of the body coordinate axes depends on the superclass of of which it is a part.
+  </pre>
+</th>
+   </tr>
+   <tr>
+     <th>Position Vector</th>
+     <th>The position vector gives the position of the body, with components in the inertial coordinate system.</th>
+   </tr>
+   <tr>
+     <th>Body Descriptor</th>
+     <th>The body descriptor is the class structure for the BODY class. See OMINAS_BODY__DEFINE.</th>
+   </tr>
+ </table>
+ <h3>Coordinate Transformation Variations</h3>
+ <p>Methods are provided to transform between adjacent coordinate systems, e.g., inertial<-->body, body<-->radec. The basic methods transform pure vectors (i.e.,they perform rotations). However, two alternate forms are provided to transform position and velocity vectors. Those variants include a translation in addition to the rotation. They are identical; separate methods are provided for clarity.</p>
+
+ <h2>Camera Object Class</h2>
+ <p>CORE -> BODY -> CAMERA</p>
+ <p>The CAMERA object class describes instruments that produce raster images. Linear, radial and polynomial distortion models are built in, but any distortion model may be specified (actually the polynomial distortion model is currently incomplete). CAMERA is an immediate subclass of BODY.</p>
+ <p><i>Coordinate Systems</i></p>
+ <table>
+   <tr>
+     <th>Focal</th>
+     <th>Cartesian coordinate system specifying locations in the focal plane as (p,q), where p and q are given in radians, and the distance from the origin to the point (p,q) is equal to the angle between the optic axis and a vector from the camera position to the point.</th>
+   </tr>
+   <tr>
+     <th>Image</th>
+     <th>Cartesian coordinate system specifying locations in a two-dimensional image as (x,y), with origin (0,0) at the lower left corner (minimum sample, maximum line) of the image and x and y increasing in the increasing sample and decreasing line directions, respectively.</th>
+   </tr>
+ </table>
+ <p><i>Data Objects</i></p>
+ <table>
+   <tr>
+     <th>Orientation Matrix</th>
+     <th>
+       <pre>The orientation matrix is inherited from BODY. The b1 axis corresponds to the camera optic axis and the b0 and b2 axes points in the image x and y directions respectively.
+
+                                                b2 = image y direction
+				|
+				| / b1 = optic axis
+				| /
+				|/
+				 ------- b0 = image x direction
+  </pre>
+</th>
+   </tr>
+   <tr>
+     <th>Position Vector</th>
+     <th>The position vector is inherited from BODY. It gives the position of the camera with respect to the inertial coordinate system.</th>
+   </tr>
+   <tr>
+     <th>Camera Descriptor</th>
+     <th>The camera descriptor is the class structure for the CAMERA class. See OMINAS_CAMERA__DEFINE.</th>
+   </tr>
+ </table>
+
+ <h2>Solid Object Class</h2>
+ <p>CORE -> BODY -> SOLID</p>
+ <p>The SOLID object class describes common attributes of three-dimensional bodies. It is an immediate subclass of BODY.</p>
+ <p><i>Data Objects</i></p>
+ <table>
+   <tr>
+     <th>Orientation Matrix</th>
+     <th>
+       <pre>The orientation matrix is inherited from BODY. The b2 axis corresponds to latitude=pi/2 and the b0 axis corresponds to longitude=0, as shown.
+
+
+				 b2 --> latitude = pi/2
+				|
+				| / b1
+				| /
+				|/
+				 ------- b0 --> longitude = 0
+  </pre>
+</th>
+   </tr>
+   <tr>
+     <th>Position Vector</th>
+     <th>The position vector is inherited from BODY. It gives the position of the body center with respect to the inertial coordinate system.</th>
+   </tr>
+   <tr>
+     <th>Solid Descriptor</th>
+     <th>The solid descriptor is the class structure for the SOLID class. See OMINAS_SOLID__DEFINE.</th>
+   </tr>
+ </table>
+
+ <h2>Globe Object Class</h2>
+ <p>CORE -> BODY -> SOLID -> GLOBE</p>
+ <p>The GLOBE object class describes the shapes of planet-like objects. Currently, it describes a triaxial ellipsoid, but this may be generalized in the future. It is an immediate subclass of SOLID.</p>
+ <p><i>Coordinate Systems</i></p>
+ <table>
+   <tr>
+     <th>Globe</th>
+     <th>Rotating spherical coordinate system defined with respect to the surface of the body. Vectors are given as [planetocentric latitude, east planetocentric longitude, altitude from local radius]. The prime meridian is defined by the b0 body axis (see diagram below). This longitude reference is not constrained by the glb package. The 'lref' field in the globe descriptor can be used to identify the particular longitude system so that other programs can perform conversions among longitude systems if desired.  This is a surface coordinate system.</th>
+   </tr>
+   <tr>
+     <th>Graphic</th>
+     <th>Analogous to the globe coordinate system except that latitudes and longitudes are planetographic.</th>
+   </tr>
+   <tr>
+     <th>Local</th>
+     <th>Rotating cartesian coordinate system defined by a point on the surface of a globe. Axis 0 points toward local east, axis 1 toward local north, and axis 2 toward local zenith.</th>
+   </tr>
+   <tr>
+     <th>Altaz</th>
+     <th>Rotating spherical representation of the local coordinate system. Component 0 is the elevation of a vector from local horizontal, component 1 is the azimuth of the vector from local north, increasing westward, and component 2 is the length of the vector.</th>
+   </tr>
+ </table>
+ <p><i>Data Objects</i></p>
+ <table>
+   <tr>
+     <th>Orientation Matrix</th>
+     <th>
+       <pre>The orientation matrix is inherited from BODY. The b2 axis corresponds to latitude=pi/2 and the b0 axis corresponds to longitude=0, as shown.
+
+        b2 --> latitude = pi/2
+				|
+				| / b1
+				| /
+				|/
+				 ------- b0 --> longitude = 0
+  </pre>
+</th>
+   </tr>
+   <tr>
+     <th>Position Vector</th>
+     <th>The position vector is inherited from BODY. It gives the position of the body center with respect to the inertial coordinate system.</th>
+   </tr>
+   <tr>
+     <th>Globe Descriptor</th>
+     <th>The globe descriptor is the class structure for the GLOBE class. See OMINAS_GLOBE__DEFINE.</th>
+   </tr>
+ </table>
+
+
+ <h2>Disk Object Class</h2>
+ <p>CORE -> BODY -> SOLID -> DISK</p>
+ <p>The DISK object class describes the shapes of objects that are roughly disk-shaped. Currently, it describes a flat object whose inner and outer edges are keplerian ellipses, but this may be generalized in the future. It is an immediate subclass of SOLID.</p>
+ <p><i>Coordinate Systems</i></p>
+ <table>
+   <tr>
+     <th>Disk</th>
+     <th>Cylindrical coordinate system defined with respect to a disk. Vectors are given as [radius, true anomaly, altitude] columns vectors with respect to the plane whose orientation and reference direction are specified by the disk orientation matrix. The reference direction (X-axis of the orientation matrix) points toward periapse.  This is a surface coordinate system.</th>
+   </tr>
+ </table>
+ <p><i>Data Objects</i></p>
+ <table>
+   <tr>
+     <th>Orientation Matrix</th>
+     <th>
+       <pre>The orientation matrix is inherited from BODY. The b2 axis corresponds to the normal to the plane of the disk and the b0 axis gives the periapse direction as shown.
+                  | b2 -> disk normal
+				          |
+				          |
+				          |_______
+			           / b1
+			         /
+			       / b0 -> periapse
+  </pre>
+</th>
+   </tr>
+   <tr>
+     <th>Position Vector</th>
+     <th>The position vector is inherited from BODY. It gives the position of the disk center with respect to the inertial coordinate system.</th>
+   </tr>
+   <tr>
+     <th>Disk Descriptor</th>
+     <th>The disk descriptor is the class structure for the DISK class. See OMINAS _DISK__DEFINE.</th>
+   </tr>
+ </table>
+
+ <h2>Planet Object Class</h2>
+ <p>CORE -> BODY -> SOLID -> GLOBE -> PLANET</p>
+ <p>The PLANET object class describes the substellar objects such as planets and satellites. It is an immediate subclass of GLOBE.</p>
+ <p><i>Data Objects</i></p>
+ <table>
+   <tr>
+     <th>Orientation Matrix</th>
+     <th>
+       <pre>The orientation matrix is inherited from BODY. Th b2 axis corresponds to the rotation axis and the b0 axis gives the zero direction of longitude as shown.
+
+      				| b2 --> rotation axis, latitude = pi/2
+      				|
+      				|
+      				|_______
+			          / b1
+			        /
+			      / b0 --> longitude = 0
+  </pre>
+</th>
+   </tr>
+   <tr>
+     <th>Position Vector</th>
+     <th>The position vector is inherited from BODY. It gives the position of the planet center with respect to the inertial coordinate system.</th>
+   </tr>
+   <tr>
+     <th>Planet Descriptor</th>
+     <th>The planet descriptor is the class structure for the PLANET class. See OMINAS_PLANET__DEFINE.</th>
+   </tr>
+ </table>
+
 </html>
