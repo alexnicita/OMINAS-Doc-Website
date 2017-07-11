@@ -467,7 +467,7 @@ The interpretation of the body coordinate axes depends on the superclass of of w
      <th>
        <pre>The orientation matrix is inherited from BODY. The b1 axis corresponds to the camera optic axis and the b0 and b2 axes points in the image x and y directions respectively.
 
-                                                b2 = image y direction
+                                b2 = image y direction
 				|
 				| / b1 = optic axis
 				| /
@@ -545,9 +545,9 @@ The interpretation of the body coordinate axes depends on the superclass of of w
      <th>
        <pre>The orientation matrix is inherited from BODY. The b2 axis corresponds to latitude=pi/2 and the b0 axis corresponds to longitude=0, as shown.
 
-        b2 --> latitude = pi/2
+                                b2 --> latitude = pi/2
 				|
-				| / b1
+				|  / b1
 				| /
 				|/
 				 ------- b0 --> longitude = 0
@@ -581,13 +581,14 @@ The interpretation of the body coordinate axes depends on the superclass of of w
      <th>Orientation Matrix</th>
      <th>
        <pre>The orientation matrix is inherited from BODY. The b2 axis corresponds to the normal to the plane of the disk and the b0 axis gives the periapse direction as shown.
-                  | b2 -> disk normal
+
+                                          | b2 -> disk normal
 				          |
 				          |
 				          |_______
-			           / b1
-			         /
-			       / b0 -> periapse
+			                 / b1
+			                /
+			               / b0 -> periapse
   </pre>
 </th>
    </tr>
@@ -609,17 +610,17 @@ The interpretation of the body coordinate axes depends on the superclass of of w
    <tr>
      <th>Orientation Matrix</th>
      <th>
-       <pre>The orientation matrix is inherited from BODY. Th b2 axis corresponds to the rotation axis and the b0 axis gives the zero direction of longitude as shown.
+       <pre>The orientation matrix is inherited from BODY. The b2 axis corresponds to the rotation axis and the b0 axis gives the zero direction of longitude as shown.
 
-      				| b2 --> rotation axis, latitude = pi/2
-      				|
-      				|
-      				|_______
-			          / b1
-			        /
-			      / b0 --> longitude = 0
-  </pre>
-</th>
+          				| b2 --> rotation axis, latitude = pi/2
+          				|
+          				|
+          				|_______
+			               / b1
+			              /
+			             / b0 --> longitude = 0
+        </pre>
+     </th>
    </tr>
    <tr>
      <th>Position Vector</th>
@@ -631,4 +632,101 @@ The interpretation of the body coordinate axes depends on the superclass of of w
    </tr>
  </table>
 
+ <h2>Ring Object Class</h2>
+ <p>CORE -> BODY -> SOLID -> DISK -> RING</p>
+ <p>The RING object class describes planetary rings. It is an immediate subclass of DISK.</p>
+ <p><i>Data Objects</i></p>
+ <table>
+   <tr>
+     <th>Orientation Matrix</th>
+     <th>
+       <pre>The orientation matrix is inherited from BODY. The b2 axis corresponds to the normal to the plane of the ring and the b0 axis gives the zero direction of longitude as shown.
+
+          				| b2 --> ring plane normal
+          				|
+          				|
+          				|_______
+			               / b1
+			              /
+			             / b0 --> disk longitude = 0
+        </pre>
+     </th>
+   </tr>
+   <tr>
+     <th>Position Vector</th>
+     <th>The position vector is inherited from BODY. It gives the position of the ring center with respect to the inertial coordinate system.</th>
+   </tr>
+   <tr>
+     <th>Ring Descriptor</th>
+     <th>The ring descriptor is the class structure for the RING class. See OMINAS_RING__DEFINE.</th>
+   </tr>
+ </table>
+
+ <h2>Star Object Class</h2>
+ <p>CORE -> BODY -> SOLID -> GLOBE -> STAR</p>
+ <p>The STAR object class describes stellar objects. It is an immediate subclass of GLOBE.</p>
+ <p><i>Data Objects</i></p>
+ <table>
+   <tr>
+     <th>Orientation Matrix</th>
+     <th>
+       <pre>The orientation matrix is inherited from BODY. The b2 axis corresponds to the normal to the rotation axis and the b0 axis gives the zero direction of longitude as shown. This is usually a unitary matrix.
+
+          				| b2 --> rotation axis, latitude = pi/2
+          				|
+          				|
+          				|_______
+			               / b1
+			              /
+			             / b0 --> disk longitude = 0
+        </pre>
+     </th>
+   </tr>
+   <tr>
+     <th>Position Vector</th>
+     <th>The position vector is inherited from BODY. It gives the position of the star center with respect to the inertial coordinate system.</th>
+   </tr>
+   <tr>
+     <th>Star Descriptor</th>
+     <th>The star descriptor is the class structure for the STAR class. See OMINAS_STAR__DEFINE.</th>
+   </tr>
+ </table>
+
+ <h2>Array Object Class</h2>
+ <h2>Station Object Class</h2>
+
+ <h2>Map Object Class</h2>
+ <p>CORE -> MAP</p>
+ <p>The MAP object class describes map projections. The following projections are currently supported:
+
+	Rectangular
+	Orthographic
+	Stereographic
+	Mercator
+
+ MAP is an immediate subclass of CORE.
+</p>
+ <p><i>Coordinate Systems</i></p>
+ <table>
+   <tr>
+     <th>Image</th>
+     <th>
+       Cartesian coordinate system specifying locations in a two-dimensional image as (x,y), with origin (0,0) at the lower left corner (minimum sample, maximum line) of the image and x and y increasing in the increasing sample and decreasing line directions, respectively.
+     </th>
+   </tr>
+   <tr>
+     <th>Map</th>
+     <th>Latitude/longitude coordinate system specifying locations on the surface. </th>
+   </tr>
+   <tr>
+     <th>Map Descriptor</th>
+     <th>The map descriptor is the class structure for the MAP class. See OMINA_MAP__DEFINE.</th>
+   </tr>
+ </table>
+
+ <h2>Orbit</h2>
+
+
+ <h1>Object Methods</h1>
+ <p>Routines that are allowed to directly access the class descriptor are referred to as its methods. They constitute the interface between the object descriptor and higher level programs. In the object library, all of the methods associated with a given class reside in the same directory. The following paragraphs describe some common types of methods used in the library.</p>
 </html>
