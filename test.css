@@ -59,17 +59,10 @@ body, html {
   height: 100%;
 }
 
-.home_page {
-  background-image: url('images/backlit_saturn.jpg');
-  height: 100%;
+.home_image {
+  background-image: url('backlit_saturn.jpg');
+  height: 95%;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.home_page a {
-  text-decoration: none;
-  text-align:center;
-  color: white;
-
+  background-size:cover;
 }
