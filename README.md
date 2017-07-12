@@ -1,1 +1,1 @@
-# OMINAS-Doc-Website
+# OMINAS Documentation Website

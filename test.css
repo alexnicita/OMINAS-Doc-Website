@@ -1,5 +1,75 @@
 /* testin out some css */
 
-body {
-  background-color: #FFFF33;
+/*pre {
+  text-align: center;
+}
+
+body, html {
+  height: 100%
+}
+
+.Doc_Title {
+  color: white;
+  padding-top: 100px;
+  background-image: url('images/backlit_saturn.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+}
+
+.Doc_SubTitle {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.first_screen {
+  background-image: url('images/backlit_saturn.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  color: white;
+}
+
+/* ------------------------------------------------------------------------- */
+
+h1 {
+  font-weight: 500;
+}
+
+.menu_bar {
+  position: absolute;
+  right: 30px;
+  top: 30px;
+}
+
+.menu_bar a {
+  text-decoration: none;
+  float: right;
+  margin-left: 15px;
+  margin-top: 2px;
+}
+
+.menu_bar a:hover {
+  opacity: .7;
+}
+
+body, html {
+  height: 100%;
+}
+
+.home_page {
+  background-image: url('images/backlit_saturn.jpg');
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.home_page a {
+  text-decoration: none;
+  text-align:center;
+  color: white;
+
 }
