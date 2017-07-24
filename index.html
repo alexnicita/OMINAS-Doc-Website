@@ -47,26 +47,29 @@
       <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
         <rect class="shape" height="60" width="320" />
       </svg>
-     <div class="text">Objects</div>
+     <a href='#object library title' style="text-decoration: none"><div class="text">Objects</div></a>
    </div>
 
    <div class="svg-wrapper" style="float:left">
      <svg height="60" width="320"  xmlns="http://www.w3.org/2000/svg">
        <rect class="shape" height="60" width="320" />
      </svg>
-    <div class="text" style="top:-68px; font-size: 18px">PG command interface</div>
+     <a href='#PG header' style="text-decoration: none">
+    <div class="text" style="top:-68px; font-size: 18px">PG command interface</div></a>
     </div>
     <div class="svg-wrapper" style="float:left">
       <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
         <rect class="shape" height="60" width="320" />
       </svg>
-     <div class="text">GRIM</div>
+      <a href='#GRIM header' style="text-decoration: none">
+     <div class="text">GRIM</div></a>
    </div>
    <div class="svg-wrapper" style="float:left">
      <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
        <rect class="shape" height="60" width="320" />
      </svg>
-    <div class="text">Batch Files</div>
+     <a href='#batch header' style="text-decoration: none">
+    <div class="text">Batch Files</div></a>
   </div>
   </div>
 
@@ -76,14 +79,16 @@
       <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
         <rect class="shape" height="60" width="320" />
       </svg>
-     <div class="text">Install</div>
+      <a href='#batch header' style="text-decoration: none">
+     <div class="text">Install</div></a>
    </div>
 
    <div class="svg-wrapper" style="float:left">
      <svg height="60" width="320"  xmlns="http://www.w3.org/2000/svg">
        <rect class="shape" height="60" width="320" />
      </svg>
-    <div class="text" >Demo</div>
+     <a href='#batch header' style="text-decoration: none">
+    <div class="text" >Demo</div></a>
     </div>
   </div>
 
@@ -880,7 +885,7 @@ The interpretation of the body coordinate axes depends on the superclass of of w
  <p>Also, the surface coordinate system provides a direct link between surface coordinate systems and the map coordinate system: transformations between surface systems and the map system are achieved by simply copying, and discarding (or zeroing out) the altitude coordinate.</p>
  <p>Because of the interchangeability among surface and image coordinate systems, programs that use the composite transformations have broad applicability with respect to the types of objects that may be operated on.</p>
 
- <h1>PG Command Interface</h1>
+ <h1 id='PG header'>PG Command Interface</h1>
  <p>PG is a user interface to OMINAS that is based around the IDL command line. It is intended as a low-level, command-based interface providing the greatest amount of flexibility at the expense of some amount of user-friendliness. As such, it is ideal as a basis for processing data in batch mode. Most PG commands are little more than wrappers for lower level routines, their primary purpose being to package the inputs and outputs in a consistent form. </p>
  <h3>Structure of a PG Program</h3>
  <p>The following example illustrates the organization of a typical PG program that computes image points. See any of the existing PG programs for further examples.</p>
@@ -961,7 +966,7 @@ end
  <p>Error handling in OMINAS is done via NV_MESSAGE. By default, NV_MESSAGE halts execution and prints a caller-supplied message, along with the name of the calling program. An expanded explanation may be provided, and various levels of verbosity may be specified to control the priority of warning messages. </p>
 
 
- <h1>Graphical Interface to OMINAS (GRIM)</h1>
+ <h1 id='GRIM header'>Graphical Interface to OMINAS (GRIM)</h1>
  <p>GRIM is a graphical interface for OMINAS.  Its purpose is to display and manipulate 1- and 2-dimensional data sets, while providing geometric overlays. The GRIM package includes an image browser, BRIM, and a command-line interface INGRID, which allows all of GRIM's geometry objects to be manipulated via the command line.  GRIM is documented in detail in the reference guide.</p>
 
 <h3>Interface to GRIM Data (INGRID)</h3>
