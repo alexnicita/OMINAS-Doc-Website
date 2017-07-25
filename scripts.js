@@ -1,6 +1,7 @@
 /* defaults when page is loaded */
 $(document).ready(function () {
   $('.all-buttons').hide()
+  $('.overview-text').hide()
 })
 
 /* home image fade away as you scroll down */
@@ -30,6 +31,17 @@ $(document).ready(function () {
   $('#enter-button').click(function () {
     $('.welcome').fadeOut(750)
     $('.all-buttons').delay(1000).fadeIn(750)
+  })
+})
+
+// click overview for overview text
+$(document).ready(function () {
+  $('#overview-button').click(function () {
+    $('#nonoverview-buttons').fadeOut(750) // fade out other buttons
+    $("html, body").animate({
+      scrollTop: $(this).offset().top - 10
+    }, 1000)
+    $('.overview-text').delay(1000).fadeIn(750) // fade in overview-text
   })
 })
 

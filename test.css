@@ -105,6 +105,7 @@ h1 {
 /* ------------------------------------------------------------------------- */
 
 #overview-button {
+  margin-top: 7%;
   margin-bottom: 7%;
 }
 
@@ -154,7 +155,7 @@ h1 {
   text-align: center;
 }
 
-.overview-text {
+.overview-button-text {
   text-decoration: none;
   color: #fff;
   font-size: 45px;
@@ -186,6 +187,14 @@ h1 {
   -webkit-animation: 0.5s draw linear forwards;
   animation: 0.5s draw linear forwards;
 }
+
+/* ------------------------------------------------------------------------- */
+
+.overview-text {
+  text-align: center;
+}
+
+/* ------------------------------------------------------------------------- */
 
 .toc {
     padding-top: 100%;
