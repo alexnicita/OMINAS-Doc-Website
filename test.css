@@ -32,6 +32,14 @@ body, html {
   color: white;
 }
 
+.home_image {
+  background-image: url('backlit_saturn.jpg');
+  height: 95%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size:cover;
+}
+
 /* ------------------------------------------------------------------------- */
 
 body, html {
@@ -43,6 +51,8 @@ body, html {
 h1 {
   font-weight: 500;
 }
+
+/* ------------------------------------------------------------------------- */
 
 .menu_bar {
   position: absolute;
@@ -70,34 +80,45 @@ h1 {
   text-decoration: none;
 }
 
-/*.home_image {
-  background-image: url('backlit_saturn.jpg');
-  height: 95%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size:cover;
-}*/
+/* ------------------------------------------------------------------------- */
 
 .welcome {
   text-align: center;
 }
 
 #welcome-title {
-  font-size: 50px;
+  font-size: 60px;
 }
 
 #welcome-subtitle {
-  font-size: 20px;
+  font-size: 25px;
 }
 
 #overview-title {
   clear: both;
 }
 
-.toc {
-  padding-top: 25%;
+#enter-button {
+  padding-top: 0
 }
 
+/* ------------------------------------------------------------------------- */
+
+#overview-button {
+  margin-bottom: 7%;
+}
+
+#button1 {
+  width: 33%;
+}
+
+#button2 {
+  width: 33%;
+}
+
+#button3 {
+  width: 33%;
+}
 
 .svg-wrapper {
   height: 60px;
@@ -106,6 +127,12 @@ h1 {
   top: 50%;
   transform: translateY(-50%);
   width: 320px;
+
+  margin-bottom: 2%;
+}
+
+.svg-wrapper a {
+  text-decoration: none;
 }
 
 .shape {
@@ -124,6 +151,17 @@ h1 {
   line-height: 32px;
   position: relative;
   top: -48px;
+  text-align: center;
+}
+
+.overview-text {
+  text-decoration: none;
+  color: #fff;
+  font-size: 45px;
+  letter-spacing: 8px;
+  line-height: 32px;
+  position: relative;
+  top: -53px;
   text-align: center;
 }
 
@@ -147,3 +185,8 @@ h1 {
 .svg-wrapper:hover .shape {
   -webkit-animation: 0.5s draw linear forwards;
   animation: 0.5s draw linear forwards;
+}
+
+.toc {
+    padding-top: 100%;
+  }
