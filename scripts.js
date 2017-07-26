@@ -73,30 +73,22 @@ $(document).ready(function () {
 
       $('#examples-button').click(function () {
         if (action_state === 0) {
-          $('#overview-button').fadeOut(750)
-          $('#button2').fadeOut(750) // fade out other buttons
-          $('#button3').fadeOut(750)
-          // $("html, body").animate({
-          //   scrollTop: $(this).offset().top - 10
-          // }, 1000)
-          if (this.hash !== "") {
-            // Prevent default anchor click behavior
-            event.preventDefault();
-          var hash = this.hash;
-          $('html, body').animate({
-            scrollTop: $(hash).offset().top
-          }, 800, function(){
+          //$('#examples-button').fadeOut(750)
+          $('#github-button').fadeOut(750) // fade out other buttons
+          $('#documentation-button').fadeOut(750)
+          //$('#demo-body').fadeIn(750)
+          $('html,body').animate({
+            scrollTop: $("#demo-body").offset().top},
+            1000);
 
-          // Add hash (#) to URL when done scrolling (default click behavior)
-          window.location.hash = hash;
-          })}
-          //$('.demo-text').delay(1000).fadeIn(750) // fade in overview-text
           action_state = 1;
           console.log(action_state);
         } else {
           action_state = 0;
+          $('#examples-button').fadeIn(750)
+          $('#github-button').fadeIn(750) // fade out other buttons
+          $('#documentation-button').fadeIn(750)
           console.log(action_state);
-          $('.overview-text').fadeOut(750)
           $('html,body').animate({
             scrollTop: $(this).offset().top - ( $(window).height() - $(this).outerHeight(true) ) / 2}, 1000);
           $('#nonoverview-buttons').delay(1000).fadeIn(750)
