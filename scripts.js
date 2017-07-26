@@ -34,18 +34,75 @@ $(document).ready(function () {
     $('.all-buttons').delay(1000).fadeIn(750)
   })
 })
-
+var action_state = 0;
 // click overview for overview text
+// $(document).ready(function () {
+//   $('#overview-button').click(function () {
+//     $('#nonoverview-buttons').fadeOut(750) // fade out other buttons
+//     $("html, body").animate({
+//       scrollTop: $(this).offset().top - 20
+//     }, 1000)
+//     $('#overview-text-title, #overview-text-body').delay(1000).fadeIn(750) // fade in overview-text
+//     // $('.reasons, #overview-example-button').delay(2000).fadeIn(750) // fade in reasons shortly after
+//     $('.reasons-nav').delay(2000).fadeIn(750)
+//   })
+// })
 $(document).ready(function () {
-  $('#overview-button').click(function () {
-    $('#nonoverview-buttons').fadeOut(750) // fade out other buttons
-    $("html, body").animate({
-      scrollTop: $(this).offset().top - 20
-    }, 1000)
-    $('#overview-text-title, #overview-text-body').delay(1000).fadeIn(750) // fade in overview-text
-    // $('.reasons, #overview-example-button').delay(2000).fadeIn(750) // fade in reasons shortly after
-    $('.reasons-nav').delay(2000).fadeIn(750)
-  })
+
+      $('#overview-button').click(function () {
+        if (action_state === 0) {
+          $('#nonoverview-buttons').fadeOut(750) // fade out other buttons
+          $("html, body").animate({
+            scrollTop: $(this).offset().top - 10
+          }, 1000)
+          $('#overview-text-title, #overview-text-body').delay(1000).fadeIn(750) // fade in overview-text
+          $('.reasons-nav').delay(2000).fadeIn(750)
+          action_state = 1;
+          console.log(action_state);
+        } else {
+          action_state = 0;
+          console.log(action_state);
+          $('#overview-text-title, #overview-text-body').fadeOut(750)
+          $('.reasons-nav').fadeOut(750)
+          $('html,body').animate({
+            scrollTop: $(this).offset().top - ( $(window).height() - $(this).outerHeight(true) ) / 2}, 1000);
+          $('#nonoverview-buttons').delay(1000).fadeIn(750)
+
+        }
+      })
+
+      $('#examples-button').click(function () {
+        if (action_state === 0) {
+          $('#overview-button').fadeOut(750)
+          $('#button2').fadeOut(750) // fade out other buttons
+          $('#button3').fadeOut(750)
+          // $("html, body").animate({
+          //   scrollTop: $(this).offset().top - 10
+          // }, 1000)
+          if (this.hash !== "") {
+            // Prevent default anchor click behavior
+            event.preventDefault();
+          var hash = this.hash;
+          $('html, body').animate({
+            scrollTop: $(hash).offset().top
+          }, 800, function(){
+
+          // Add hash (#) to URL when done scrolling (default click behavior)
+          window.location.hash = hash;
+          })}
+          //$('.demo-text').delay(1000).fadeIn(750) // fade in overview-text
+          action_state = 1;
+          console.log(action_state);
+        } else {
+          action_state = 0;
+          console.log(action_state);
+          $('.overview-text').fadeOut(750)
+          $('html,body').animate({
+            scrollTop: $(this).offset().top - ( $(window).height() - $(this).outerHeight(true) ) / 2}, 1000);
+          $('#nonoverview-buttons').delay(1000).fadeIn(750)
+        }
+      })
+
 })
 
 // clicking the nav brings it to the top and dipslays the section you clicked on
@@ -57,6 +114,8 @@ $(document).ready(function () {
 
   })
 })
+
+
 
 // // fade in reasons class as you scroll down -- wasn't working though
 // $(window).scroll(function () {
