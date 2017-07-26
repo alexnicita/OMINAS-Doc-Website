@@ -224,6 +224,12 @@ ul {
   list-style-type: none;
   margin-left: 5%;
   margin-right: 5%;
+
+  text-decoration: none;
+  color: white;
+  font: 25px/1 Helvetica, Verdana, sans-serif;
+  text-transform: uppercase;
+  -webkit-transition: all 0.5s ease;
 }
 
 li {
@@ -240,21 +246,30 @@ li:last-child {
   border-right: none;
 }
 
-li a {
+/*li a {
   text-decoration: none;
   color: white;
   font: 25px/1 Helvetica, Verdana, sans-serif;
   text-transform: uppercase;
   -webkit-transition: all 0.5s ease;
-}
+}*/
 
-li a:hover {
+li:hover {
   opacity: .7;
 }
 
 li.active a {
   font-weight: bold;
   color: #333;
+}
+
+/* ------------------------------------------------------------------------- */
+
+.reasons-text p {
+  text-align: center;
+  margin: 5%;
+  font-size: 50px;
+  font-weight: bold;
 }
 
 /* ------------------------------------------------------------------------- */
