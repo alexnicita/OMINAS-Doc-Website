@@ -40,21 +40,21 @@
     </div>
 
     <div class="buttoncontainer" id="nonoverview-buttons">
-      <div class="svg-wrapper" style="float:left" id='button1'>
+      <div class="svg-wrapper" style="float:left" id='examples-button'>
         <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
           <rect class="shape" height="60" width="320" />
         </svg>
-       <a href='#object library title' target="_blank"><div class="text">Examples</div></a>
+       <a  target="_blank"><div class="text">Examples</div></a>
       </div>
 
-      <div class="svg-wrapper" style="float:left" id='button2'>
+      <div class="svg-wrapper" style="float:left" id='github-button'>
         <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
           <rect class="shape" height="60" width="320" />
         </svg>
         <a href='https://github.com/ppenteado/ominas' target="_blank"><div class="text">GitHub</div></a>
       </div>
 
-      <div class="svg-wrapper" style="float:left" id='button3'>
+      <div class="svg-wrapper" style="float:left" id='documentation-button'>
         <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
          <rect class="shape" height="60" width="320" />
         </svg>
@@ -103,17 +103,17 @@
     </div>
 
     <div class='reasons-text'>
-      <p id='reason-1'>OMINAS is built to be used with any type of file.</p>
-      <p id='reason-2'>OMINAS' core seperates geometry calculations and data anlysis.</p>
-      <p id='reason-3'>OMINAS revolves around object oriented programming principles, optmizing the software for modularity and clean organization.</p>
-      <p id='reason-4'>OMINAS has a graphical tool (GRIM) that can be used alongside command line scripts for real-time data manipulation and analysis.</p>
-      <p id='reason-5'>Among all of this, OMINAS maintains speed comparable to C and portability on as many UNIX-based platforms as possible.</p>
+      <p id='reason-1'>OMINAS is built to be used with any type of file.<br><br>(insert generality example below)</p>
+      <p id='reason-2'>OMINAS' core seperates geometry calculations and data anlysis.<br><br>(insert organization example below)</p>
+      <p id='reason-3'>OMINAS revolves around object oriented programming principles, optmizing the software for modularity and clean organization.<br>(<br>insert modularity example below)</p>
+      <p id='reason-4'>OMINAS has a graphical tool (GRIM) that can be used alongside command line scripts for real-time data manipulation and analysis.<br><br>(insert graphical example below)</p>
+      <p id='reason-5'>Among all of this, OMINAS maintains speed comparable to C and portability on as many UNIX-based platforms as possible.<br><br>(insert efficiency example below)</p>
     </div>
 
   </div>
 
 
-  <div class='toc'>
+  <div id='toc-old-buttons'><div class='toc'>
     <h1>Table of Contents</h1>
     <p>This needs to be filled in once the TOC is finalized.</p>
     <p>Also check out the working batch link below.</p>
@@ -170,9 +170,57 @@
      <a href='#batch header' style="text-decoration: none">
     <div class="text" >Demo</div></a>
     </div>
-  </div>
+  </div></div>
 
-  <br><br>
+  <br><br><br><br>
+  <div id='grim-batch'><h1 id='GRIM header'>Graphical Interface to OMINAS (GRIM)</h1>
+  <p>GRIM is a graphical interface for OMINAS.  Its purpose is to display and manipulate 1- and 2-dimensional data sets, while providing geometric overlays. The GRIM package includes an image browser, BRIM, and a command-line interface INGRID, which allows all of GRIM's geometry objects to be manipulated via the command line.  GRIM is documented in detail in the reference guide.</p>
+
+ <h3>Interface to GRIM Data (INGRID)</h3>
+ <p>The grim command-line interface allows the user to manipulate data sets alongside GRIM. INGRID may be used to obtain and replace GRIM's descriptors for use with other programs, or on the command line, and GR_DRAW applies new GRIM overlays. GRIM monitors events on all of the descriptors that it maintains, so modifications to any of those descriptors are immediately acted on in GRIM.</p>
+
+
+ <h1 id='batch header'>OMINAS Batch Files</h1>
+ <p>OMINAS provides several IDL batch files that allow the user to run some OMINAS programs directly from the unix command line. The batch files are run as follows:</p>
+ <p><pre>% ominas name<>.bat -args [args]</pre></p>
+ <p>The user will likely wish to create the following aliases (or let the installer do it):</p>
+ <p><pre>                alias grim      		  'ominas grim.bat -args'
+ 		alias brim       		  'ominas brim.bat -args'
+ 		alias rim       		  'ominas rim.bat -args'</pre></p>
+ <p>Command-line arguments are separated into direct arguments and keyword-value pairs. Keyword-value pairs are designed to parse similar to IDL keyword arguments: arguments containing '=' or a single leading occurrence of '-' as the first character are treated as keyword-value pairs, with '-' causing the value to be set to 1, like ‘/’ on the IDL command line. Data types of values are inferred from their contents. If a value consists of only numeric characters, then it is converted to int, and so on. Values containing commas are separated into arrays of values. Keyword value pairs are passed directly to the IDL program, so typically any keywords (including abbreviation) accepted by the program may be input from the unix command line, to the extent that they can be represented
+  using this simplified syntax.</p>
+ <p>Direct arguments are returned to the batch file and are generally treated as a list of filenames. Direct arguments ending with '@' are treated as names of file-list files, i.e., their contents are appended to the direct arguments and used as if given directly on the command line. Note that the shell can handle only relatively short argument lists, so if you specify a file specification that expands to more than, say, 200 filenames, you may get an error. In that case, protect the file specification with single quotes to force the shell to pass the file specification rather than its expansion to the IDL program, which is generally written to expand the file specification internally.</p>
+ <p><pre> Examples:
+
+  1) To open a group of images in grim and overlay saturn's limb and terminator, type:
+
+   	$ grim 'N1489*.IMG' over=limb:saturn,term:saturn
+
+
+  2) Same as above, except reading the filenames from a file and different view parameters:
+
+  	 $ grim files.txt@ over=limb:saturn,term:saturn z=0.5 -order</pre></p>
+ <p>See each batch file for a complete description of its usage.</p></div>
+
+ <h1 id='demo-header'>Demo Examples<h1>
+
+ <div id = 'demo-body'>
+   <p>asdf</p>
+
+   <img id='jupiterload' src='jupiter_load.jpeg' alt='' width='50%' height='100%'>
+   <img src="/demo/jupiter_load.jpeg" alt='' width='10%' height='10%'>
+   <img id='jupiterscan' src='jupiter_ex_cvscan_repoint.jpeg' alt='' width='50%' height='100%'>
+   <img id='saturnload' src='saturn_load.jpeg' alt='' width='30%' height='50%'>
+   <img id='saturnlatlon' src='saturn_latlon.jpeg' alt='' width='30%' height='50%'>
+ </div>
+
+
+ <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+ <h1 id = 'installation header'>Installation</h1>
+ <p>Requirements for installing OMINAS</p>
+
+
+
   <h1 id='overview-title'>OMINAS Overview</h1>
 
   <h1>OMINAS Overview</h1>
@@ -1046,46 +1094,7 @@ end
  <p>Error handling in OMINAS is done via NV_MESSAGE. By default, NV_MESSAGE halts execution and prints a caller-supplied message, along with the name of the calling program. An expanded explanation may be provided, and various levels of verbosity may be specified to control the priority of warning messages. </p>
 
 
- <h1 id='GRIM header'>Graphical Interface to OMINAS (GRIM)</h1>
- <p>GRIM is a graphical interface for OMINAS.  Its purpose is to display and manipulate 1- and 2-dimensional data sets, while providing geometric overlays. The GRIM package includes an image browser, BRIM, and a command-line interface INGRID, which allows all of GRIM's geometry objects to be manipulated via the command line.  GRIM is documented in detail in the reference guide.</p>
 
-<h3>Interface to GRIM Data (INGRID)</h3>
-<p>The grim command-line interface allows the user to manipulate data sets alongside GRIM. INGRID may be used to obtain and replace GRIM's descriptors for use with other programs, or on the command line, and GR_DRAW applies new GRIM overlays. GRIM monitors events on all of the descriptors that it maintains, so modifications to any of those descriptors are immediately acted on in GRIM.</p>
-
-
-<h1 id='batch header'>OMINAS Batch Files</h1>
-<p>OMINAS provides several IDL batch files that allow the user to run some OMINAS programs directly from the unix command line. The batch files are run as follows:</p>
-<p><pre>% ominas name<>.bat -args [args]</pre></p>
-<p>The user will likely wish to create the following aliases (or let the installer do it):</p>
-<p><pre>                alias grim      		  'ominas grim.bat -args'
-		alias brim       		  'ominas brim.bat -args'
-		alias rim       		  'ominas rim.bat -args'</pre></p>
-<p>Command-line arguments are separated into direct arguments and keyword-value pairs. Keyword-value pairs are designed to parse similar to IDL keyword arguments: arguments containing '=' or a single leading occurrence of '-' as the first character are treated as keyword-value pairs, with '-' causing the value to be set to 1, like ‘/’ on the IDL command line. Data types of values are inferred from their contents. If a value consists of only numeric characters, then it is converted to int, and so on. Values containing commas are separated into arrays of values. Keyword value pairs are passed directly to the IDL program, so typically any keywords (including abbreviation) accepted by the program may be input from the unix command line, to the extent that they can be represented
- using this simplified syntax.</p>
-<p>Direct arguments are returned to the batch file and are generally treated as a list of filenames. Direct arguments ending with '@' are treated as names of file-list files, i.e., their contents are appended to the direct arguments and used as if given directly on the command line. Note that the shell can handle only relatively short argument lists, so if you specify a file specification that expands to more than, say, 200 filenames, you may get an error. In that case, protect the file specification with single quotes to force the shell to pass the file specification rather than its expansion to the IDL program, which is generally written to expand the file specification internally.</p>
-<p><pre> Examples:
-
- 1) To open a group of images in grim and overlay saturn's limb and terminator, type:
-
-  	$ grim 'N1489*.IMG' over=limb:saturn,term:saturn
-
-
- 2) Same as above, except reading the filenames from a file and different view parameters:
-
- 	 $ grim files.txt@ over=limb:saturn,term:saturn z=0.5 -order</pre></p>
-<p>See each batch file for a complete description of its usage.</p>
-
-<h1 id='demo header'>Demo Examples<h1>
-<p>asdf</p>
-
-<img id='jupiterload' src='jupiter_load.jpeg' alt='' width='50%' height='100%'>
-<img src="/demo/jupiter_load.jpeg" alt='' width='10%' height='10%'>
-<img id='jupiterscan' src='jupiter_ex_cvscan_repoint.jpeg' alt='' width='50%' height='100%'>
-<img id='saturnload' src='saturn_load.jpeg' alt='' width='30%' height='50%'>
-<img id='saturnlatlon' src='saturn_latlon.jpeg' alt='' width='30%' height='50%'>
-
-<h1 id = 'installation header'>Installation</h1>
-<p>Requirements for installing OMINAS</p>
 
 
 </html>

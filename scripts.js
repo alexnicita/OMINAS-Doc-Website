@@ -4,6 +4,10 @@ $(document).ready(function () {
   $('#overview-text-title, #overview-text-body, .reasons, #overview-example-button').hide()
   $('.reasons-nav').hide()
   $('#reason-1, #reason-2, #reason-3, #reason-4, #reason-5').hide()
+  $('#grim-batch').hide()
+  $('#toc-old-buttons').hide()
+  $('#demo-body').hide()
+  $('#demo-header').hide()
 })
 
 /* home image fade away as you scroll down */
@@ -35,18 +39,57 @@ $(document).ready(function () {
     $('.all-buttons').delay(1000).fadeIn(750)
   })
 })
+var action_state = 0;
+var action_state_ex = 0;
 
-// click overview for overview text
 $(document).ready(function () {
-  $('#overview-button').click(function () {
-    $('#nonoverview-buttons').fadeOut(750) // fade out other buttons
-    $("html, body").animate({
-      scrollTop: $(this).offset().top - 20
-    }, 1000)
-    $('#overview-text-title, #overview-text-body').delay(1000).fadeIn(750) // fade in overview-text
-    // $('.reasons, #overview-example-button').delay(2000).fadeIn(750) // fade in reasons shortly after
-    $('.reasons-nav').delay(2000).fadeIn(750)
-  })
+
+      $('#overview-button').click(function () {
+        if (action_state === 0) {
+          $('#nonoverview-buttons').fadeOut(750) // fade out other buttons
+          $("html, body").animate({
+            scrollTop: $(this).offset().top - 10
+          }, 1000)
+          $('#overview-text-title, #overview-text-body').delay(1000).fadeIn(750) // fade in overview-text
+          $('.reasons-nav').delay(2000).fadeIn(750)
+          action_state = 1;
+          console.log(action_state);
+        } else {
+          action_state = 0;
+          console.log(action_state);
+          $('#overview-text-title, #overview-text-body').fadeOut(750)
+          $('.reasons-nav').fadeOut(750)
+          $('html,body').animate({
+            scrollTop: $(this).offset().top - ( $(window).height() - $(this).outerHeight(true) ) / 2}, 1000);
+          $('#nonoverview-buttons').delay(1000).fadeIn(750)
+
+        }
+      })
+
+      $('#examples-button').click(function () {
+        if (action_state_ex === 0) {
+          $('#github-button').fadeOut(750) // fade out other buttons
+          $('#documentation-button').fadeOut(750)
+
+          $("html, body").animate({
+            scrollTop: $(this).offset().top - 10
+          }, 1000)
+          $('#demo-body').delay(1000).fadeIn(750)
+          action_state_ex = 1;
+          console.log(action_state);
+        } else {
+          action_state_ex = 0;
+          $('#demo-body').fadeOut(750)
+
+          console.log(action_state);
+          $('html,body').animate({
+            scrollTop: $(this).offset().top - ( $(window).height() - $(this).outerHeight(true) ) / 2}, 1000);
+          //$('#nonoverview-buttons').delay(1000).fadeIn(750)
+          $('#github-button').delay(1000).fadeIn(750) // fade out other buttons
+          $('#documentation-button').delay(1000).fadeIn(750)
+        }
+      })
+
 })
 
 // clicking the nav brings it to the top but includes the ominas overview description
