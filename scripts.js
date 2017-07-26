@@ -1,7 +1,7 @@
 /* defaults when page is loaded */
 $(document).ready(function () {
   $('.all-buttons').hide()
-  $('.overview-text').hide()
+  $('#overview-text-title, #overview-text-body, .reasons, #overview-example-button').hide()
 })
 
 /* home image fade away as you scroll down */
@@ -39,11 +39,27 @@ $(document).ready(function () {
   $('#overview-button').click(function () {
     $('#nonoverview-buttons').fadeOut(750) // fade out other buttons
     $("html, body").animate({
-      scrollTop: $(this).offset().top - 10
+      scrollTop: $(this).offset().top - 20
     }, 1000)
-    $('.overview-text').delay(1000).fadeIn(750) // fade in overview-text
+    $('#overview-text-title, #overview-text-body').delay(1000).fadeIn(750) // fade in overview-text
+    $('.reasons, #overview-example-button').delay(2000).fadeIn(750) // fade in reasons shortly after
   })
 })
+
+// // fade in reasons class as you scroll down -- wasn't working though
+// $(window).scroll(function () {
+//     var bottom_of_reasons = $('.reasons').offset().top + $('.reasons').outerHeight();
+//     var bottom_of_window = $(window).scrollTop() + $(window).height();
+//
+//     var bottom_of_overviewText = $('.overview-text').offest().top + $('.overview-text').outerHeight();
+//     var windowHeight = $(window).height();
+//
+//     if (bottom_of_overviewText > (windowHeight/2)) {
+//       $('.reasons').css({
+//         'opacity': (10*(bottom_of_window - bottom_of_reasons))/(bottom_of_reasons)
+//       })
+//     }
+// })
 
 // below is the old home page that didn't have a click to enter on it
 

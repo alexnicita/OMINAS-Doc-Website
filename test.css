@@ -190,8 +190,25 @@ h1 {
 
 /* ------------------------------------------------------------------------- */
 
-.overview-text {
+.overview-text #overview-text-title {
   text-align: center;
+  font-size: 35px;
+}
+
+.overview-text #overview-text-body {
+  text-align: left;
+  font-size: 25px;
+  margin-left: 30%;
+  margin-right: 27%;
+  float: left;
+}
+
+.reasons {
+  text-align: left;
+  font-size: 25px;
+  margin-left: 30%;
+  margin-right: 27%;
+  float: left;
 }
 
 /* ------------------------------------------------------------------------- */
