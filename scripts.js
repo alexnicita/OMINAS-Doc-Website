@@ -2,6 +2,7 @@
 $(document).ready(function () {
   $('.all-buttons').hide()
   $('#overview-text-title, #overview-text-body, .reasons, #overview-example-button').hide()
+  $('.reasons-nav').hide()
 })
 
 /* home image fade away as you scroll down */
@@ -42,7 +43,18 @@ $(document).ready(function () {
       scrollTop: $(this).offset().top - 20
     }, 1000)
     $('#overview-text-title, #overview-text-body').delay(1000).fadeIn(750) // fade in overview-text
-    $('.reasons, #overview-example-button').delay(2000).fadeIn(750) // fade in reasons shortly after
+    // $('.reasons, #overview-example-button').delay(2000).fadeIn(750) // fade in reasons shortly after
+    $('.reasons-nav').delay(2000).fadeIn(750)
+  })
+})
+
+// clicking the nav brings it to the top and dipslays the section you clicked on
+$(document).ready(function () {
+  $('#nav').click(function() {
+    $("html, body").animate({
+      scrollTop: $(this).offset().top - 50
+    }, 1000)
+
   })
 })
 
