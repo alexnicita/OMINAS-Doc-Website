@@ -1,8 +1,8 @@
 /* defaults when page is loaded */
 $(document).ready(function () {
   $('.all-buttons').hide()
-  $('#overview-text-title, #overview-text-body, .reasons, #overview-example-button').hide()
-  $('.reasons-nav').hide()
+  $('.overview-text, #overview-text-title, #overview-text-body, .reasons, #overview-example-button').hide()
+  $('.navigation, .unique-list').hide()
   $('#reason-1, #reason-2, #reason-3, #reason-4, #reason-5').hide()
   $('#grim-batch').hide()
   $('#toc-old-buttons').hide()
@@ -47,18 +47,19 @@ $(document).ready(function () {
       $('#overview-button').click(function () {
         if (action_state === 0) {
           $('#nonoverview-buttons').fadeOut(750) // fade out other buttons
+          percentage = $(window).height()/10
           $("html, body").animate({
-            scrollTop: $(this).offset().top - 10
+            scrollTop: $(this).offset().top - percentage
           }, 1000)
-          $('#overview-text-title, #overview-text-body').delay(1000).fadeIn(750) // fade in overview-text
-          $('.reasons-nav').delay(2000).fadeIn(750)
+          $('.overview-text, #overview-text-title, #overview-text-body').delay(2000).fadeIn(1000) // fade in overview-text
+          $('.unique-list').delay(1500).fadeIn(2000)
           action_state = 1;
           console.log(action_state);
         } else {
           action_state = 0;
           console.log(action_state);
           $('#overview-text-title, #overview-text-body').fadeOut(750)
-          $('.reasons-nav').fadeOut(750)
+          $('.navigation, .unique-list').fadeOut(750)
           $('html,body').animate({
             scrollTop: $(this).offset().top - ( $(window).height() - $(this).outerHeight(true) ) / 2}, 1000);
           $('#nonoverview-buttons').delay(1000).fadeIn(750)
@@ -95,7 +96,7 @@ $(document).ready(function () {
 // clicking the nav brings it to the top but includes the ominas overview description
 $(document).ready(function () {
   $('.unique-list').click(function() {
-    var percentage = $(window).height()/10
+    var percentage = $(window).height()/25
     $("html, body").animate({
       scrollTop: $(this).offset().top - percentage
     }, 1000)
@@ -109,26 +110,57 @@ $(document).ready(function() {
     $(current).fadeOut(1000)
     current = '#reason-1';
     $(current).delay(1000).fadeIn(1000)
+    $('.unique-list').each(function () {
+      $(this).removeClass('.active')
+      $('#1').addClass('.active')
+    })
   })
   $('#2').click(function () {
     $(current).fadeOut(1000)
     current = '#reason-2';
     $(current).delay(1000).fadeIn(1000)
+    $('.unique-list').each(function () {
+      $(this).removeClass('.active')
+      $('#2').addClass('.active')
+    })
   })
   $('#3').click(function () {
     $(current).fadeOut(1000)
     current = '#reason-3';
     $(current).delay(1000).fadeIn(1000)
+    $('.unique-list').each(function () {
+      $(this).removeClass('.active')
+      $('#3').addClass('.active')
+    })
   })
   $('#4').click(function () {
     $(current).fadeOut(1000)
     current = '#reason-4';
     $(current).delay(1000).fadeIn(1000)
+    $('.unique-list').each(function () {
+      $(this).removeClass('.active')
+      $('#4').addClass('.active')
+    })
   })
   $('#5').click(function () {
     $(current).fadeOut(1000)
     current = '#reason-5';
     $(current).delay(1000).fadeIn(1000)
+    $('.unique-list').each(function () {
+      $(this).removeClass('.active')
+      $('#5').addClass('.active')
+    })
+  })
+})
+
+// sloppy implementation of function to change color of current li
+
+
+
+$(document).ready(function () {
+  var headerAnchors = $('li').click(function () {
+    headerAnchors.removeClass('active');
+    $(this).addClass('active');
   })
 })
 

@@ -107,18 +107,20 @@ h1 {
 
 #overview-button {
   margin-top: 7%;
-  margin-bottom: 7%;
 }
 
 #examples-button {
+  margin-top: 7%;
   width: 33%;
 }
 
 #github-button {
+  margin-top: 7%;
   width: 33%;
 }
 
 #documentation-button {
+  margin-top: 7%;
   width: 33%;
 }
 
@@ -191,40 +193,43 @@ h1 {
 
 /* ------------------------------------------------------------------------- */
 
+.overview-text {
+  color: black;
+  background-image: url('./images/infrared.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}
 .overview-text #overview-text-title {
-  text-align: center;
+  text-align: left;
   font-size: 35px;
+  margin-left: 25%;
+  margin-right: 22%;
+  float: left;
+  background-color: white;
+  padding: 20px;
 }
 
 .overview-text #overview-text-body {
   text-align: left;
   font-size: 25px;
-  margin-left: 30%;
-  margin-right: 27%;
+  margin-left: 25%;
+  margin-right: 22%;
   float: left;
-}
-
-.reasons {
-  text-align: left;
-  font-size: 25px;
-  margin-left: 30%;
-  margin-right: 30%;
-  float: left;
+  background-color: white;
+  padding: 5px;
 }
 
 /* ------------------------------------------------------------------------- */
 
-nav {
-  margin: 50px;
-  text-align: center;
+.unique-list ul {
+  list-style-type: none;
+  padding: 20px;
 }
 
-ul {
-  /*overflow: auto;*/
-  list-style-type: none;
-  margin-left: 5%;
-  margin-right: 5%;
-
+.unique-list {
+  text-align: center;
   text-decoration: none;
   color: white;
   font: 25px/1 Helvetica, Verdana, sans-serif;
@@ -232,7 +237,7 @@ ul {
   -webkit-transition: all 0.5s ease;
 }
 
-li {
+.unique-list li {
   height: 25px;
   display: inline-block;
   /*text-align: center;
@@ -242,34 +247,27 @@ li {
   padding: 0 20px;
 }
 
+.unique-list li.active {
+  color: #9932CC;
+}
+
 li:last-child {
   border-right: none;
 }
 
-/*li a {
-  text-decoration: none;
-  color: white;
-  font: 25px/1 Helvetica, Verdana, sans-serif;
-  text-transform: uppercase;
-  -webkit-transition: all 0.5s ease;
-}*/
-
 li:hover {
+  color: #9932CC;
   opacity: .7;
 }
 
-li.active a {
-  font-weight: bold;
-  color: #333;
-}
 
 /* ------------------------------------------------------------------------- */
 
 .reasons-text p {
   text-align: center;
   margin: 5%;
-  font-size: 50px;
-  font-weight: bold;
+  font: 25px/1;
+  font-size: 40px;
 }
 
 /* ------------------------------------------------------------------------- */
