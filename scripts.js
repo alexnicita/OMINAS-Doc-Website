@@ -15,6 +15,7 @@ $(document).ready(function () {
   $('#toc-old-buttons').hide()
   $('#demo-body').hide()
   $('#demo-header').hide()
+  $('.extra-text-container').hide()
 })
 /* ------------------------------------------------------------------------- */
 
@@ -78,6 +79,7 @@ $(document).ready(function () {
     // overview out
     else {
       $('.unique-list, .text-container, #home').fadeOut(750)
+      $(tabs).removeClass('active').delay(1000)
       $('html,body').animate({
         scrollTop: $(this).offset().top - ( $(window).height() - $(this).outerHeight(true) ) / 2
       }, 1000);
@@ -135,65 +137,54 @@ $(document).ready(function () {
 
 /* ------------------------------------------------------------------------- */
 // clicking overview nav bar
+var tabs = '#0, #1, #2, #3, #4, #5'
 $(document).ready(function() {
 
   $('#0').click(function () {
-    $(current).fadeOut(1000)
+    $(current).fadeOut(575)
     current = '#home';
-    $(current).delay(1000).fadeIn(1000)
-    $('.unique-list').each(function () {
-      $(this).removeClass('active')
-    })
+    $(current).delay(600).fadeIn(1000)
+    $(tabs).removeClass('active')
     $('#0').addClass('active')
   })
 
   $('#1').click(function () {
-    $(current).fadeOut(1000)
+    $(current).fadeOut(575)
     current = '#reason-1';
-    $(current).delay(1000).fadeIn(1000)
-    $('.unique-list').each(function () {
-      $(this).removeClass('active')
-    })
+    $(current).delay(600).fadeIn(1000)
+    $(tabs).removeClass('active')
     $('#1').addClass('active')
   })
 
   $('#2').click(function () {
-    $(current).fadeOut(1000)
+    $(current).fadeOut(575)
     current = '#reason-2';
-    $(current).delay(1000).fadeIn(1000)
-    $('.unique-list').each(function () {
-      $(this).removeClass('active')
-    })
+    $(current).delay(600).fadeIn(1000)
+    $(tabs).removeClass('active')
     $('#2').addClass('active')
   })
 
   $('#3').click(function () {
-    $(current).fadeOut(1000)
+    $(current).fadeOut(575)
     current = '#reason-3';
-    $(current).delay(1000).fadeIn(1000)
-    $('.unique-list').each(function () {
-      $(this).removeClass('active')
-    })
+    $(current).delay(600).fadeIn(1000)
+    $(tabs).removeClass('active')
     $('#3').addClass('active')
   })
 
   $('#4').click(function () {
-    $(current).fadeOut(1000)
+    $(current).fadeOut(575)
     current = '#reason-4';
-    $(current).delay(1000).fadeIn(1000)
-    $('.unique-list').each(function () {
-      $(this).removeClass('active')
-    })
+    $(current).delay(600).fadeIn(1000)
+    $(tabs).removeClass('active')
     $('#4').addClass('active')
   })
 
   $('#5').click(function () {
-    $(current).fadeOut(1000)
+    $(current).fadeOut(575)
     current = '#reason-5';
-    $(current).delay(1000).fadeIn(1000)
-    $('.unique-list').each(function () {
-      $(this).removeClass('active')
-    })
+    $(current).delay(600).fadeIn(1000)
+    $(tabs).removeClass('active')
     $('#5').addClass('active')
   })
 })
