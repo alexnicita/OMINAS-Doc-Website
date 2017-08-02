@@ -6,6 +6,9 @@
     <link rel = 'stylesheet' type = 'text/css' href='test.css'/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src='scripts.js'></script>
+    <link rel="stylesheet" href="styles/default.css">
+    <script src="highlight.pack.js">
+    </script>
   </head>
 
   <body>
@@ -17,9 +20,10 @@
   </div>
 
   <img id='saturn-pic' src='./images/backlit_saturn.jpg' alt='' width='100%' height='100%'>
-
+  <pre><code class="javascript">var test; alert (1+1);</code></pre>
   <div class='welcome'>
     <p id='welcome-title'>Welcome to OMINAS</p>
+    <pre><code class="javascript">console.log(1+1)</code></pre>
     <div class="svg-wrapper" id="enter-button">
       <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
         <rect class="shape" height="60" width="320" />
@@ -273,22 +277,29 @@
  <h1 id='demo-header'>Demo Examples<h1>
 
  <div id = 'demo-body'>
+   <br>
    <p>asdf</p>
 
-   <img id='jupiterload' src='jupiter_load.jpeg' alt='' width='50%' height='100%'>
-   <img src="/demo/jupiter_load.jpeg" alt='' width='10%' height='10%'>
-   <img id='jupiterscan' src='jupiter_ex_cvscan_repoint.jpeg' alt='' width='50%' height='100%'>
-   <img id='saturnload' src='saturn_load.jpeg' alt='' width='30%' height='50%'>
-   <img id='saturnlatlon' src='saturn_latlon.jpeg' alt='' width='30%' height='50%'>
+   <img id='jupiterload' style = 'margin:auto' src='./demo/jupiter_load.jpeg' alt='' width='40%' height='40%'>
+   <img id='jupiterscan' style = 'margin:auto' ] src='./demo/jupiter_ex_cvscan_repoint.jpeg' alt='' width='40%' height='40%'>
+   <div class="highlighter-rouge">
+     <pre class="highlight">
+       <code>idl code here lol ol ollol</code>
+     </pre>
+   </div>
+   <img id='saturnload' style = 'margin:auto' src='./demo/saturn_load.jpeg' alt='' width='40%' height='40%'>
+   <img id='saturnlatlon' style = 'margin:auto' src='./demo/saturn_latlon.jpeg' alt='' width='40%' height='40%'>
  </div>
 
 
  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
- <h1 id = 'installation header'>Installation</h1>
- <p>Requirements for installing OMINAS</p>
+ <div id= 'installation-body'>
+   <h1 id = 'installation header'>Installation</h1>
+   <p>Requirements for installing OMINAS</p>
+ </div>
 
 
-
+<div id = 'overview-body'>
   <h1 id='overview-title'>OMINAS Overview</h1>
 
   <h1>OMINAS Overview</h1>
@@ -1161,7 +1172,7 @@ end
  <h4>Error Handling</h4>
  <p>Error handling in OMINAS is done via NV_MESSAGE. By default, NV_MESSAGE halts execution and prints a caller-supplied message, along with the name of the calling program. An expanded explanation may be provided, and various levels of verbosity may be specified to control the priority of warning messages. </p>
 
-
+</div>
 
 
 

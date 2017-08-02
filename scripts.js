@@ -16,6 +16,8 @@ $(document).ready(function () {
   $('#toc-old-buttons').hide()
   $('#demo-body').hide()
   $('#demo-header').hide()
+  $('#overview-body').hide()
+  $('#installation-body').hide()
 })
 /* ------------------------------------------------------------------------- */
 
