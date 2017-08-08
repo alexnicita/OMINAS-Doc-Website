@@ -6,9 +6,8 @@ current = ''
 $(document).ready(function () {
   $('.all-buttons').hide()
 
-  $('#home').hide()
-  $('.unique-list').hide()
-  $('#reason-1, #reason-2, #reason-3, #reason-4, #reason-5').hide()
+  $('.unique-list, .text-container').hide()
+  $('#home, #reason-1, #reason-2, #reason-3, #reason-4, #reason-5').hide()
 
   // $('.overview-container').hide()
 
@@ -16,8 +15,12 @@ $(document).ready(function () {
   $('#toc-old-buttons').hide()
   $('#demo-body').hide()
   $('#demo-header').hide()
+
   $('#overview-body').hide()
   $('#installation-body').hide()
+
+  $('.extra-text-container').hide()
+
 })
 /* ------------------------------------------------------------------------- */
 
@@ -66,25 +69,29 @@ $(document).ready(function () {
     // overview in
     if (action_state === 0) {
       $('#nonoverview-buttons').fadeOut(750)
-      percentage = $(window).height()/10
       $("html, body").animate({
-        scrollTop: $(this).offset().top - percentage
+        scrollTop: $(this).offset().top - 20
       }, 1000)
-      action_state = 1;
-      console.log(action_state);
 
       // initial overview
-      $('.unique-list, #home').delay(1000).fadeIn(2000)
+      $('.unique-list, .text-container, #home').delay(1000).fadeIn(2000)
+      current = '#home'
+      $('#0').addClass('active')
+
+      action_state = 1;
+      console.log(action_state);
     }
     // overview out
     else {
-      action_state = 0; // reset action state
-      console.log(action_state);
-      $('.overview-container').fadeOut(750)
+      $('.unique-list, .text-container, #home').fadeOut(750)
+      $(tabs).removeClass('active').delay(1000)
       $('html,body').animate({
         scrollTop: $(this).offset().top - ( $(window).height() - $(this).outerHeight(true) ) / 2
       }, 1000);
       $('#nonoverview-buttons').delay(1000).fadeIn(750)
+
+      action_state = 0; // reset action state
+      console.log(action_state);
     }
   })
 })
@@ -135,56 +142,55 @@ $(document).ready(function () {
 
 /* ------------------------------------------------------------------------- */
 // clicking overview nav bar
+var tabs = '#0, #1, #2, #3, #4, #5'
 $(document).ready(function() {
 
+  $('#0').click(function () {
+    $(current).fadeOut(575)
+    current = '#home';
+    $(current).delay(600).fadeIn(1000)
+    $(tabs).removeClass('active')
+    $('#0').addClass('active')
+  })
+
   $('#1').click(function () {
-    $(current).fadeOut(1000)
+    $(current).fadeOut(575)
     current = '#reason-1';
-    $(current).delay(1000).fadeIn(1000)
-    $('.unique-list').each(function () {
-      $(this).removeClass('.active')
-      $('#1').addClass('.active')
-    })
+    $(current).delay(600).fadeIn(1000)
+    $(tabs).removeClass('active')
+    $('#1').addClass('active')
   })
 
   $('#2').click(function () {
-    $(current).fadeOut(1000)
+    $(current).fadeOut(575)
     current = '#reason-2';
-    $(current).delay(1000).fadeIn(1000)
-    $('.unique-list').each(function () {
-      $(this).removeClass('.active')
-      $('#2').addClass('.active')
-    })
+    $(current).delay(600).fadeIn(1000)
+    $(tabs).removeClass('active')
+    $('#2').addClass('active')
   })
 
   $('#3').click(function () {
-    $(current).fadeOut(1000)
+    $(current).fadeOut(575)
     current = '#reason-3';
-    $(current).delay(1000).fadeIn(1000)
-    $('.unique-list').each(function () {
-      $(this).removeClass('.active')
-      $('#3').addClass('.active')
-    })
+    $(current).delay(600).fadeIn(1000)
+    $(tabs).removeClass('active')
+    $('#3').addClass('active')
   })
 
   $('#4').click(function () {
-    $(current).fadeOut(1000)
+    $(current).fadeOut(575)
     current = '#reason-4';
-    $(current).delay(1000).fadeIn(1000)
-    $('.unique-list').each(function () {
-      $(this).removeClass('.active')
-      $('#4').addClass('.active')
-    })
+    $(current).delay(600).fadeIn(1000)
+    $(tabs).removeClass('active')
+    $('#4').addClass('active')
   })
 
   $('#5').click(function () {
-    $(current).fadeOut(1000)
+    $(current).fadeOut(575)
     current = '#reason-5';
-    $(current).delay(1000).fadeIn(1000)
-    $('.unique-list').each(function () {
-      $(this).removeClass('.active')
-      $('#5').addClass('.active')
-    })
+    $(current).delay(600).fadeIn(1000)
+    $(tabs).removeClass('active')
+    $('#5').addClass('active')
   })
 })
 /* ------------------------------------------------------------------------- */

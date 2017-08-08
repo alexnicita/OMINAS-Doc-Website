@@ -7,8 +7,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src='scripts.js'></script>
     <link rel="stylesheet" href="styles/default.css">
-    <script src="highlight.pack.js">
-    </script>
+    <script src="highlight.pack.js"></script>
+    <script>    hljs.initHighlightingOnLoad();</script>
   </head>
 
   <body>
@@ -56,32 +56,34 @@
         <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
          <rect class="shape" height="60" width="320" />
         </svg>
-        <a href='https://ppenteado.github.io/ominas_doc/'  target="_blank"><div class="text">Documentation</div></a>
+        <a href='https://ppenteado.github.io/ominas_doc/newheader/guides/index_home.html'  target="_blank"><div class="text">Documentation</div></a>
       </div>
     </div>
   </div>
 
   <div class="overview-container">
     <ul class='unique-list'>
-      <li id='0' class='active'>Home</li>
+      <li id='0'>Home</li>
       <li id='1'>Generality</li>
       <li id='2'>Organization</li>
       <li id='3'>Modularity</li>
       <li id='4'>Graphical</li>
       <li id='5'>Efficiency</li>
     </ul>
-    <div class='reasons-text'>
-      <div id ='home' class="overview-text">
-        <p id='overview-text-title'><b>OMINAS - Opensource Multiple Instrument Analysis Software</b></p>
-        <p id='overview-text-body'>OMINAS is an IDL-based software environment that allows you to reduce and analyze any data from space or planet based systems.</p>
-        <p id='overview-text-body'>Funding for OMINAS' initial development was provided through the Cassini Mission.</p>
-        <p id='overview-text-body'>OMINAS is unlike other astro-data processing software - below are 5 reasons why.</p>
+    <div class="text-container">
+      <div class='reasons-text'>
+        <div id ='home' class="overview-text">
+          <p id='overview-text-title'><b>OMINAS - Opensource Multiple Instrument Analysis Software</p>
+          <p id='overview-text-body'>OMINAS is an IDL-based software environment that allows you to reduce and analyze any data from space or planet based systems.</p>
+          <p id='overview-text-body'>Funding for OMINAS' initial development was provided through the Cassini Mission.</p>
+          <p id='overview-text-body'>OMINAS is unlike other astro-data processing software - above are 5 reasons why.</p>
+        </div>
+        <p id='reason-1'>OMINAS is built to be used with any type of file.<br><br>(insert generality example below)</p>
+        <p id='reason-2'>OMINAS' core seperates geometry calculations and data anlysis.<br><br>(insert organization example below)</p>
+        <p id='reason-3'>OMINAS revolves around object oriented programming principles, optmizing the software for modularity and clean organization.<br><br>(insert modularity example below)</p>
+        <p id='reason-4'>OMINAS has a graphical tool (GRIM) that can be used alongside command line scripts for real-time data manipulation and analysis.<br><br>(insert graphical example below)</p>
+        <p id='reason-5'>Among all of this, OMINAS maintains speed comparable to C and portability on as many UNIX-based platforms as possible.<br><br>(insert efficiency example below)</p>
       </div>
-      <p id='reason-1'>OMINAS is built to be used with any type of file.<br><br>(insert generality example below)</p>
-      <p id='reason-2'>OMINAS' core seperates geometry calculations and data anlysis.<br><br>(insert organization example below)</p>
-      <p id='reason-3'>OMINAS revolves around object oriented programming principles, optmizing the software for modularity and clean organization.<br><br>(insert modularity example below)</p>
-      <p id='reason-4'>OMINAS has a graphical tool (GRIM) that can be used alongside command line scripts for real-time data manipulation and analysis.<br><br>(insert graphical example below)</p>
-      <p id='reason-5'>Among all of this, OMINAS maintains speed comparable to C and portability on as many UNIX-based platforms as possible.<br><br>(insert efficiency example below)</p>
     </div>
   </div>
 
@@ -184,6 +186,54 @@
       <p id='reason-5'>Among all of this, OMINAS maintains speed comparable to C and portability on as many UNIX-based platforms as possible.<br><br>(insert efficiency example below)</p>
     </div> -->
 
+    <div id = 'demo-body'>
+      <br><br><br><br><br><br><br><br><br><br>
+      <p>asdf</p>
+      <br>
+
+
+      <img id='jupiterload' src="./demo/jupiter_load.jpeg" alt='' width='40%' height='40%'>
+      <img id='jupiterload1' src="./demo/jupcombined1.png" alt='' width='70%' height='40%'>
+      <img id='jupiterload1' src="./demo/jupcombined2.png" alt='' width='70%' height='40%'>
+      <img id='jupiterload1' src="./demo/jupcombined3.png" alt='' width='70%' height='40%'>
+
+      <img id='jupiterscan' src='jupiter_ex_cvscan_repoint.jpeg' alt='' width='70%' height='70%'>
+      <pre><code class = 'idl'>dd = dat_read('./data/N1350122987_2.IMG', im, label)
+cd = pg_get_cameras(dd)
+pd = pg_get_planets(dd, od=cd, count=npd)
+rd = pg_get_rings(dd, pd=pd, od=cd, count=nrd)
+sund = pg_get_stars(dd, od=cd, name='SUN')
+pg_draw, object_ptd, col=colors, psy=psyms, psi=psizes, csi=csizes, pl=plabels
+
+
+
+shortened version
+dd = dat_read('./data/N1350122987_2.IMG', im, label)
+tvim, im, zoom=0.75, /order, /new
+cd = pg_get_cameras(dd)
+pd = pg_get_planets(dd, od=cd, count=npd)
+rd = pg_get_rings(dd, pd=pd, od=cd, count=nrd)
+sund = pg_get_stars(dd, od=cd, name='SUN')
+gd = {cd:cd, gbx:pd, dkx:rd, sund:sund}
+ring_ptd = pg_disk(gd=gd) & pg_hide, ring_ptd, gd=gd, bx=pd
+pg_draw, ring_ptd, make_array(2*nrd,value=ctred())
+</code></pre>
+      <img id='saturnload' src='saturn_load.jpeg' alt='' width='30%' height='50%'>
+
+      <div class='codepic'>
+        <img id='saturnlatlon' src='saturn_latlon.jpeg' alt='' width='30%' height='50%'>
+        <img id='overlay-img' src="./demo/jupcombined1.jpeg" alt="" >
+      </div>
+      <img id='overlay-img' src="./demo/gridcode" alt="" >
+      <div class="codepic">
+        <div id="main_image"></div>
+        <div id="overlay-img"></div>
+      </div>
+    </div>
+
+<div class="filler"></div>
+
+<div class="extra-text-container">
 
   <div id='toc-old-buttons'><div class='toc'>
     <h1>Table of Contents</h1>
@@ -276,6 +326,7 @@
 
  <h1 id='demo-header'>Demo Examples<h1>
 
+
  <div id = 'demo-body'>
    <br>
    <p>asdf</p>
@@ -290,6 +341,7 @@
    <img id='saturnload' style = 'margin:auto' src='./demo/saturn_load.jpeg' alt='' width='40%' height='40%'>
    <img id='saturnlatlon' style = 'margin:auto' src='./demo/saturn_latlon.jpeg' alt='' width='40%' height='40%'>
  </div>
+
 
 
  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
@@ -1171,6 +1223,7 @@ end
  <p>The PG_GET/SET programs are the means by which the PG library isolates data analysis code from geometry sources via the DAT_GET/SET_VALUE mechanism, which was the foremost motivation for bothering to write OMINAS. Therefore, the user should ALWAYS, NO EXCEPTIONS use these routines to obtain geometry descriptors. To obtain data from a new source (say, a new star catalog), you should write a translator for that source and put its name in the translators table (see [[]]).</p>
  <h4>Error Handling</h4>
  <p>Error handling in OMINAS is done via NV_MESSAGE. By default, NV_MESSAGE halts execution and prints a caller-supplied message, along with the name of the calling program. An expanded explanation may be provided, and various levels of verbosity may be specified to control the priority of warning messages. </p>
+
 
 </div>
 
