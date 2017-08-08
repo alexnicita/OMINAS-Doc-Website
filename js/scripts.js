@@ -6,9 +6,8 @@ current = ''
 $(document).ready(function () {
   $('.all-buttons').hide()
 
-  $('#home').hide()
-  $('.unique-list').hide()
-  $('#reason-1, #reason-2, #reason-3, #reason-4, #reason-5').hide()
+  $('.unique-list, .text-container').hide()
+  $('#home, #reason-1, #reason-2, #reason-3, #reason-4, #reason-5').hide()
 
   // $('.overview-container').hide()
 
@@ -16,8 +15,17 @@ $(document).ready(function () {
   $('#toc-old-buttons').hide()
   $('#demo-body').hide()
   $('#demo-header').hide()
-  $('#installation-body').hide()
+
   $('#overview-body').hide()
+  $('#installation-body').hide()
+
+  $('.extra-text-container').hide()
+
+  $('#my_carousel_ct').hide()
+  $('.slider-container').hide()
+
+  slider();
+
 })
 /* ------------------------------------------------------------------------- */
 
@@ -66,25 +74,29 @@ $(document).ready(function () {
     // overview in
     if (action_state === 0) {
       $('#nonoverview-buttons').fadeOut(750)
-      percentage = $(window).height()/10
       $("html, body").animate({
-        scrollTop: $(this).offset().top - percentage
+        scrollTop: $(this).offset().top - 20
       }, 1000)
-      action_state = 1;
-      console.log(action_state);
 
       // initial overview
-      $('.unique-list, #home').delay(1000).fadeIn(2000)
+      $('.unique-list, .text-container, #home').delay(1000).fadeIn(2000)
+      current = '#home'
+      $('#0').addClass('active')
+
+      action_state = 1;
+      console.log(action_state);
     }
     // overview out
     else {
-      action_state = 0; // reset action state
-      console.log(action_state);
-      $('.overview-container').fadeOut(750)
+      $('.unique-list, .text-container, #home').fadeOut(750)
+      $(tabs).removeClass('active').delay(1000)
       $('html,body').animate({
         scrollTop: $(this).offset().top - ( $(window).height() - $(this).outerHeight(true) ) / 2
       }, 1000);
       $('#nonoverview-buttons').delay(1000).fadeIn(750)
+
+      action_state = 0; // reset action state
+      console.log(action_state);
     }
   })
 })
@@ -101,15 +113,18 @@ $(document).ready(function () {
       $("html, body").animate({
         scrollTop: $(this).offset().top - 10
       }, 1000)
-      $('#demo-body').delay(1000).fadeIn(750)
+      // $('#demo-body').delay(1000).fadeIn(750)
+      $('.slider-container').delay(1000).fadeIn(750)
+      $('#examples-button').css({
+        "color":"red"})
       action_state_ex = 1;
-      console.log(action_state);
+      console.log(action_state_ex);
     }
     // examples out
     else {
       action_state_ex = 0;
-      console.log(action_state);
-      $('#demo-body').fadeOut(750)
+      console.log(action_state_ex);
+      $('.slider-container').fadeOut(750)
       $('html,body').animate({
         scrollTop: $(this).offset().top - ( $(window).height() - $(this).outerHeight(true) ) / 2
       }, 1000);
@@ -135,56 +150,87 @@ $(document).ready(function () {
 
 /* ------------------------------------------------------------------------- */
 // clicking overview nav bar
+var tabs = '#0, #1, #2, #3, #4, #5'
 $(document).ready(function() {
 
+  $('#0').click(function () {
+    $(current).fadeOut(575)
+    current = '#home';
+    $(current).delay(600).fadeIn(1000)
+    $(tabs).removeClass('active')
+    $('#0').addClass('active')
+  })
+
   $('#1').click(function () {
-    $(current).fadeOut(1000)
+    $(current).fadeOut(575)
     current = '#reason-1';
-    $(current).delay(1000).fadeIn(1000)
-    $('.unique-list').each(function () {
-      $(this).removeClass('.active')
-      $('#1').addClass('.active')
-    })
+    $(current).delay(600).fadeIn(1000)
+    $(tabs).removeClass('active')
+    $('#1').addClass('active')
   })
 
   $('#2').click(function () {
-    $(current).fadeOut(1000)
+    $(current).fadeOut(575)
     current = '#reason-2';
-    $(current).delay(1000).fadeIn(1000)
-    $('.unique-list').each(function () {
-      $(this).removeClass('.active')
-      $('#2').addClass('.active')
-    })
+    $(current).delay(600).fadeIn(1000)
+    $(tabs).removeClass('active')
+    $('#2').addClass('active')
   })
 
   $('#3').click(function () {
-    $(current).fadeOut(1000)
+    $(current).fadeOut(575)
     current = '#reason-3';
-    $(current).delay(1000).fadeIn(1000)
-    $('.unique-list').each(function () {
-      $(this).removeClass('.active')
-      $('#3').addClass('.active')
-    })
+    $(current).delay(600).fadeIn(1000)
+    $(tabs).removeClass('active')
+    $('#3').addClass('active')
   })
 
   $('#4').click(function () {
-    $(current).fadeOut(1000)
+    $(current).fadeOut(575)
     current = '#reason-4';
-    $(current).delay(1000).fadeIn(1000)
-    $('.unique-list').each(function () {
-      $(this).removeClass('.active')
-      $('#4').addClass('.active')
-    })
+    $(current).delay(600).fadeIn(1000)
+    $(tabs).removeClass('active')
+    $('#4').addClass('active')
   })
 
   $('#5').click(function () {
-    $(current).fadeOut(1000)
+    $(current).fadeOut(575)
     current = '#reason-5';
-    $(current).delay(1000).fadeIn(1000)
-    $('.unique-list').each(function () {
-      $(this).removeClass('.active')
-      $('#5').addClass('.active')
-    })
+    $(current).delay(600).fadeIn(1000)
+    $(tabs).removeClass('active')
+    $('#5').addClass('active')
   })
 })
+/* ------------------------------------------------------------------------- */
+
+/* ------------------------------------------------------------------------- */
+function slider() {
+    var slides = $('.slide');
+    var i = 0;
+    $('#previous').hide();
+    $('#next').click(function () {
+        if (i == 0) {
+            $('#previous').show();
+        }
+        if (i == slides.length - 2) {
+            $('#next').hide();
+        }
+        i = ++i % slides.length;
+        $('.slider-wrapper').animate({
+            'left': -(slides.eq(i).position().left)
+        }, 600, "swing");
+    });
+    $('#previous').click(function () {
+        if (i == 1) {
+            $('#previous').hide();
+        }
+        if (i == slides.length - 1) {
+            $('#next').show();
+        }
+        i = --i % slides.length;
+        $('.slider-wrapper').animate({
+            'left': -(slides.eq(i).position().left)
+        }, 600, "swing");
+    });
+}
 /* ------------------------------------------------------------------------- */

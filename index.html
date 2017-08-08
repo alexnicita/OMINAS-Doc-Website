@@ -3,12 +3,17 @@
 
   <head>
     <title>OMINAS User Guide</title>
-    <link rel = 'stylesheet' type = 'text/css' href='test.css'/>
+    <link rel = 'stylesheet' type = 'text/css' href='./css/style.css'/>
+    <link rel = 'stylesheet' type = 'text/css' href='./slidershock_plugin/css/slider_multiple.css'/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src='scripts.js'></script>
+
     <link rel="stylesheet" href="styles/default.css">
-    <script src="highlight.pack.js"></script>
-    <script>    hljs.initHighlightingOnLoad();</script>
+    <script src="./js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <script src='./js/scripts.js'></script>
+    <script type='text/javascript' src='./slidershock_plugin/js/wpts_slider_multiple.js'></script>
+
   </head>
 
   <body>
@@ -20,10 +25,9 @@
   </div>
 
   <img id='saturn-pic' src='./images/backlit_saturn.jpg' alt='' width='100%' height='100%'>
-  <pre><code class="javascript">var test; alert (1+1);</code></pre>
+  <!-- <pre><code class="javascript">var test; alert (1+1);</code></pre> -->
   <div class='welcome'>
     <p id='welcome-title'>Welcome to OMINAS</p>
-    <pre><code class="javascript">console.log(1+1)</code></pre>
     <div class="svg-wrapper" id="enter-button">
       <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
         <rect class="shape" height="60" width="320" />
@@ -86,6 +90,157 @@
       </div>
     </div>
   </div>
+
+  <!-- <embed id='slider' src='./slidershock_plugin/index.html'> -->
+
+  <div class="slider-container">
+            <div id="slider-display">
+                <div class="slider-wrapper">
+
+
+                  <div id="-1" class="slide">
+                    <div class="stuff">
+                        <p>test 0</p>
+                        <div class="slide-container">
+
+                        </div>
+                    </div>
+                  </div>
+
+                    <div id="0" class="slide">
+                        <div class="stuff">
+                            <p>test 0</p>
+                            <img src="./demo/jupiter_load.jpeg" class='slider-image'/>
+                        </div>
+                    </div>
+
+                    <div id="1" class="slide">
+                        <div class="stuff">
+                            <p>test 1</p>
+                            <img src="./demo/jupcombined1.png" class='slider-image'/>
+                        </div>
+                    </div>
+
+                    <<div id="2" class="slide">
+                        <div class="stuff">
+                            <p>test 2</p>
+                            <img src="./demo/jupcombined2.png" class='slider-image'/>
+                        </div>
+                    </div>
+
+                    <div id="3" class="slide">
+                        <div class="stuff">
+                            <p>test 3</p>
+                            <img src="./demo/jupcombined3.png" class='slider-image'/>
+                        </div>
+                    </div>
+
+                    <div id="4" class="slide">
+                        <div class="stuff">
+                            <p>test 4</p>
+                            <img src="./demo/jupiter_ex_cvscan_repoint.jpeg" class='slider-image'/>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <img id="previous" class="buttons" src="./images/left-arrow-white.png" />
+            <img id="next" class="buttons" src="./images/right-arrow-white.png" />
+        </div>
+
+    </div>
+
+  <!-- <div id='my_carousel_ct' class='carousel-container'>
+    <div id="my_carousel_1" class="carousel slide">
+      <div id="my_carousel_2" class="carousel-inner rs-slider">
+        <div class="item active">
+          <div class="ts_border">
+            <img src="demo/jupiter_load.jpeg" />
+            <div class="carousel-caption">
+              <h4>Lorem ipsum</h4>
+                <p class="ts_txt">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+                  </p>
+                </p>
+            </div>
+          </div>
+        </div>
+  <div class="item">
+          <div class="ts_border">
+            <img src="demo/img/2.jpg" />
+            <div class="carousel-caption">
+              <h4>Lorem ipsum 2</h4>
+                <p class="ts_txt">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                  </p>
+                </p>
+            </div>
+          </div>
+        </div>
+  <div class="item">
+          <div class="ts_border">
+            <img src="demo/img/3.jpg" />
+            <div class="carousel-caption">
+              <h4>My image 3</h4>
+                <p class="ts_txt">
+                  <p>This is my img 3
+                  </p>
+                </p>
+            </div>
+          </div>
+        </div>
+  <div class="item">
+          <div class="ts_border">
+            <img src="demo/img/4.jpg" />
+            <div class="carousel-caption">
+              <h4>My image 4</h4>
+                <p class="ts_txt">
+                  <p>My image number 4
+                  </p>
+                </p>
+            </div>
+          </div>
+        </div>
+      <div class="item">
+          <div class="ts_border">
+            <img src="demo/img/5.jpg" />
+            <div class="carousel-caption">
+              <h4>My image 5</h4>
+                <p class="ts_txt">
+                  <p>This is my image number 5
+                  </p>
+                </p>
+            </div>
+          </div>
+        </div>
+  <div class="item">
+          <div class="ts_border">
+            <img src="demo/img/6.jpg" />
+            <div class="carousel-caption">
+              <h4>My image 6</h4>
+                <p class="ts_txt">
+                  <p>This is my image number 6
+                  </p>
+                </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <a class="carousel-custom" href="#my_carousel_1" data-slide="prev">&lsaquo;</a>
+      <a class="carousel-custom" href="#my_carousel_1" data-slide="next">&rsaquo;</a>
+    </div>
+  </div> -->
+
+
+
+
+
+
+
+
+
 
     <!-- <ul class='unique-list'>
       <li id='1'>Home</li>
@@ -185,7 +340,9 @@
       <p id='reason-4'>OMINAS has a graphical tool (GRIM) that can be used alongside command line scripts for real-time data manipulation and analysis.<br><br>(insert graphical example below)</p>
       <p id='reason-5'>Among all of this, OMINAS maintains speed comparable to C and portability on as many UNIX-based platforms as possible.<br><br>(insert efficiency example below)</p>
     </div> -->
+    <div class="filler">
 
+    </div>
     <div id = 'demo-body'>
       <br><br><br><br><br><br><br><br><br><br>
       <p>asdf</p>
@@ -197,7 +354,7 @@
       <img id='jupiterload1' src="./demo/jupcombined2.png" alt='' width='70%' height='40%'>
       <img id='jupiterload1' src="./demo/jupcombined3.png" alt='' width='70%' height='40%'>
 
-      <img id='jupiterscan' src='jupiter_ex_cvscan_repoint.jpeg' alt='' width='70%' height='70%'>
+      <img id='jupiterscan' src='./demo/jupiter_ex_cvscan_repoint.jpeg' alt='' width='70%' height='70%'>
       <pre><code class = 'idl'>dd = dat_read('./data/N1350122987_2.IMG', im, label)
 cd = pg_get_cameras(dd)
 pd = pg_get_planets(dd, od=cd, count=npd)
