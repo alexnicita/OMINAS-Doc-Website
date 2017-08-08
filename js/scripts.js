@@ -16,6 +16,10 @@ $(document).ready(function () {
   $('#demo-body').hide()
   $('#demo-header').hide()
   $('.extra-text-container').hide()
+  $('#my_carousel_ct').hide()
+  $('.slider-container').hide()
+
+  slider();
 })
 /* ------------------------------------------------------------------------- */
 
@@ -103,7 +107,8 @@ $(document).ready(function () {
       $("html, body").animate({
         scrollTop: $(this).offset().top - 10
       }, 1000)
-      $('#demo-body').delay(1000).fadeIn(750)
+      // $('#demo-body').delay(1000).fadeIn(750)
+      $('.slider-container').delay(1000).fadeIn(750)
       action_state_ex = 1;
       console.log(action_state);
     }
@@ -111,7 +116,7 @@ $(document).ready(function () {
     else {
       action_state_ex = 0;
       console.log(action_state);
-      $('#demo-body').fadeOut(750)
+      $('.slider-container').fadeOut(750)
       $('html,body').animate({
         scrollTop: $(this).offset().top - ( $(window).height() - $(this).outerHeight(true) ) / 2
       }, 1000);
@@ -188,4 +193,36 @@ $(document).ready(function() {
     $('#5').addClass('active')
   })
 })
+/* ------------------------------------------------------------------------- */
+
+/* ------------------------------------------------------------------------- */
+function slider() {
+    var slides = $('.slide');
+    var i = 0;
+    $('#previous').hide();
+    $('#next').click(function () {
+        if (i == 0) {
+            $('#previous').show();
+        }
+        if (i == slides.length - 2) {
+            $('#next').hide();
+        }
+        i = ++i % slides.length;
+        $('.slider-wrapper').animate({
+            'left': -(slides.eq(i).position().left)
+        }, 600, "swing");
+    });
+    $('#previous').click(function () {
+        if (i == 1) {
+            $('#previous').hide();
+        }
+        if (i == slides.length - 1) {
+            $('#next').show();
+        }
+        i = --i % slides.length;
+        $('.slider-wrapper').animate({
+            'left': -(slides.eq(i).position().left)
+        }, 600, "swing");
+    });
+}
 /* ------------------------------------------------------------------------- */
