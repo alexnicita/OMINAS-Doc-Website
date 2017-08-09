@@ -12,11 +12,30 @@
     <script>
       hljs.initHighlightingOnLoad();
     </script>
+    <style>
+    .under {
+      position: relative;
+      top:0;
+      left:0;
+    }
+    .over {
+      position:absolute;
+      top: 10px;
+      left: 10px;
+    }
+
+    </style>
   </head>
 
   <body>
     <h1>asdf</h1>
     <pre><code class = 'javascript'>var test; alert (1+1);</code></pre>
+
+
+    <div style="position: relative; left:0; top:0; "><img id='jupitergrid' src="./demo/jupiter_latlon.png" alt='' width='40%' height='40%' class = "under">
+
+    <img id='jupitergridcode' src="./demo/gridcode.png" alt='' width='30%'  class= "over"></div>
+
   </body>
 
 </html>
