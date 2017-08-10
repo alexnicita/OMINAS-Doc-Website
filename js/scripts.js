@@ -5,6 +5,7 @@ current = ''
 /* defaults when page is loaded */
 $(document).ready(function () {
   $('.all-buttons').hide()
+  $('#examples-GD').hide()
 
   $('.unique-list, .text-container').hide()
   $('#home, #reason-1, #reason-2, #reason-3, #reason-4, #reason-5').hide()
@@ -102,13 +103,14 @@ $(document).ready(function () {
   $('#examples-button').click(function () {
     if (action_state_ex === 0) {
       // examples in
-      $('#github-button').fadeOut(750) // fade out other buttons
-      $('#documentation-button').fadeOut(750)
+      // $('#github-button').fadeOut(750) // fade out other buttons
+      // $('#documentation-button').fadeOut(750)
       $("html, body").animate({
-        scrollTop: $(this).offset().top - 10
+        scrollTop: $(this).offset().top + 150
       }, 1000)
       // $('#demo-body').delay(1000).fadeIn(750)
       $('.slider-container').delay(1000).fadeIn(750)
+      $('#examples-GD').delay(1250).fadeIn(750)
       action_state_ex = 1;
       console.log(action_state);
     }
@@ -117,11 +119,12 @@ $(document).ready(function () {
       action_state_ex = 0;
       console.log(action_state);
       $('.slider-container').fadeOut(750)
+      $('#examples-GD').fadeOut(750)
       $('html,body').animate({
         scrollTop: $(this).offset().top - ( $(window).height() - $(this).outerHeight(true) ) / 2
       }, 1000);
-      $('#github-button').delay(1000).fadeIn(750) // fade out other buttons
-      $('#documentation-button').delay(1000).fadeIn(750)
+      // $('#github-button').delay(1000).fadeIn(750) // fade out other buttons
+      // $('#documentation-button').delay(1000).fadeIn(750)
     }
   })
 })
