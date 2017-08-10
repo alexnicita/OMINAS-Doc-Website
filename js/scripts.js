@@ -105,8 +105,9 @@ $(document).ready(function () {
       // examples in
       // $('#github-button').fadeOut(750) // fade out other buttons
       // $('#documentation-button').fadeOut(750)
+      scroll = $(this).offset().top + 150
       $("html, body").animate({
-        scrollTop: $(this).offset().top + 150
+        scrollTop: scroll
       }, 1000)
       // $('#demo-body').delay(1000).fadeIn(750)
       $('.slider-container').delay(1000).fadeIn(750)
@@ -199,6 +200,7 @@ $(document).ready(function() {
 /* ------------------------------------------------------------------------- */
 
 /* ------------------------------------------------------------------------- */
+// inspiration sourced from online for this slider
 function slider() {
     var slides = $('.slide');
     var i = 0;
