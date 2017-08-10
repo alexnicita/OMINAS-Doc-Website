@@ -105,7 +105,7 @@ $(document).ready(function () {
       $('#github-button').fadeOut(750) // fade out other buttons
       $('#documentation-button').fadeOut(750)
       $("html, body").animate({
-        scrollTop: $(this).offset().top - 10
+        scrollTop: $(this).offset().top + 200
       }, 1000)
       // $('#demo-body').delay(1000).fadeIn(750)
       $('.slider-container').delay(1000).fadeIn(750)
