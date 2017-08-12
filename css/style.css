@@ -394,3 +394,15 @@ li:hover {
 .toc {
     padding-top: 100%;
   }
+
+
+.more_ex{
+  float: center;
+  height: 300px;
+  width: 300px;
+  border: 2px white solid;
+  margin: 2px;
+}
+.more_ex:hover{
+  opacity: 0.5;
+}

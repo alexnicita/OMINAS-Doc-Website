@@ -67,6 +67,9 @@ $(document).ready(function () {
   $('#overview-button').click(function () {
     // overview in
     if (action_state === 0) {
+      if (action_state_ex === 1) {
+        $('.slider-container').fadeOut(750);
+      }
       $('#nonoverview-buttons').fadeOut(750)
       $("html, body").animate({
         scrollTop: $(this).offset().top - 20
@@ -82,7 +85,11 @@ $(document).ready(function () {
     }
     // overview out
     else {
+      if (action_state_ex === 1) {
+        $('.slider-container').fadeOut(750);
+      }
       $('.unique-list, .text-container, #home').fadeOut(750)
+
       $(tabs).removeClass('active').delay(1000)
       $('html,body').animate({
         scrollTop: $(this).offset().top - ( $(window).height() - $(this).outerHeight(true) ) / 2
