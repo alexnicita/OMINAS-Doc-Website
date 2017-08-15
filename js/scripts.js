@@ -18,8 +18,10 @@ $(document).ready(function () {
   $('.extra-text-container').hide()
   $('#my_carousel_ct').hide()
   $('.slider-container').hide()
+  $('.grid_container').hide()
 
   slider();
+  gridHover();
 })
 /* ------------------------------------------------------------------------- */
 
@@ -109,12 +111,13 @@ $(document).ready(function () {
   $('#examples-button').click(function () {
     if (action_state_ex === 0) {
       // examples in
-      $('#github-button').fadeOut(750) // fade out other buttons
-      $('#documentation-button').fadeOut(750)
+      // $('#github-button').fadeOut(750) // fade out other buttons
+      // $('#documentation-button').fadeOut(750)
       $("html, body").animate({
-        scrollTop: $(this).offset().top + 200
+        scrollTop: $(this).offset().top - 50
       }, 1000)
       // $('#demo-body').delay(1000).fadeIn(750)
+      $('.grid_container').delay(1000).fadeIn(750)
       $('.slider-container').delay(1000).fadeIn(750)
       action_state_ex = 1;
       console.log(action_state);
@@ -204,6 +207,7 @@ $(document).ready(function() {
 
 /* ------------------------------------------------------------------------- */
 function slider() {
+    $('#next').click().click();
     var slides = $('.slide');
     var i = 0;
     $('#previous').hide();
@@ -233,3 +237,8 @@ function slider() {
     });
 }
 /* ------------------------------------------------------------------------- */
+// function gridHover() {
+//   $('.more_ex').hover(function () {
+//     opacity: .7;
+//   })
+// }
