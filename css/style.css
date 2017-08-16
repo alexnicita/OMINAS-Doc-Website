@@ -244,6 +244,11 @@ li:hover {
   border: 3px solid black;
 }
 
+.overview-text #overview-text-body a:link {
+  text-decoration: none;
+  color: #9932CC;
+}
+
 /* ------------------------------------------------------------------------- */
 
 .slide-container {

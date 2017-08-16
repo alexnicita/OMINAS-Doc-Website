@@ -1,0 +1,1 @@
+This site is currently hosted through Alex Nicita's AWS account. There is no active connection between GitHub and AWS, so to modify ominas.info, you must re-upload files to the AWS account. If there is ever a future issue and you cannot contact Alex Nicita, please refer to Paul Andres or Paulo Penteado.

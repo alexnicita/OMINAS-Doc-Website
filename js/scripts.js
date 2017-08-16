@@ -126,11 +126,12 @@ $(document).ready(function () {
     else {
       action_state_ex = 0;
       console.log(action_state);
+      $('.grid_container').fadeOut(750)
       $('.slider-container').fadeOut(750)
       $('html,body').animate({
-        scrollTop: $(this).offset().top - ( $(window).height() - $(this).outerHeight(true) ) / 2
+        scrollTop: $(this).offset().top - ( $(window).height() - $(this).outerHeight(true) )
       }, 1000);
-      $('#github-button').delay(1000).fadeIn(750) // fade out other buttons
+      $('#github-button').delay(1000).fadeIn(750)
       $('#documentation-button').delay(1000).fadeIn(750)
     }
   })
@@ -207,7 +208,6 @@ $(document).ready(function() {
 
 /* ------------------------------------------------------------------------- */
 function slider() {
-    $('#next').click().click();
     var slides = $('.slide');
     var i = 0;
     $('#previous').hide();
